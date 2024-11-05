@@ -1,32 +1,24 @@
 // src/Home.js
 import React from "react";
-import { Link } from "react-router-dom";
+import ConvexGeometryComponent from "./ConvexGeometry";
 
 const Home = () => {
 	return (
-		<main className="bg-white p-6 rounded-lg shadow-md">
-			<h2 className="text-3xl font-bold text-gray-800 mb-4">
-				Welcome to the Minsang's Posting Page
-			</h2>
-			<p className="text-gray-600 mb-4">
-				This is a sample documentation site structured like MDN. You can
-				find various tutorials, guides, and API references.
+		<main className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+			{/* 다각형 컴포넌트 */}
+			<div className="flex justify-center items-center">
+				<ConvexGeometryComponent />
+			</div>
+
+			{/* 텍스트 콘텐츠 */}
+			<h1 className="text-4xl font-bold text-gray-800 mt-6">
+				Blog Posting
+			</h1>
+			<p className="text-gray-600 mt-4 text-center max-w-md">
+				Welcome to my blog! Here, you’ll find insights on software
+				development, tutorials, and guides that I’ve gathered from my
+				journey in tech. Dive in and explore!
 			</p>
-			{/* <Link to="/post/1" className="text-blue-500 hover:underline">
-				Getting Started
-			</Link>
-			<br />
-			<Link to="/post/2" className="text-blue-500 hover:underline">
-				Tutorials
-			</Link>
-			<br />
-			<Link to="/post/3" className="text-blue-500 hover:underline">
-				API Reference
-			</Link>
-			<br />
-			<Link to="/post/4" className="text-blue-500 hover:underline">
-				Guides
-			</Link> */}
 		</main>
 	);
 };

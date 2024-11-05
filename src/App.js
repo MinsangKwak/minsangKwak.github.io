@@ -1,14 +1,14 @@
 // src/App.js
 import React, { useState, useEffect } from "react";
 import CodePost from "./CodePost";
-import postsData from "./data/posts.json"; // JSON 파일에서 데이터를 가져옵니다.
+import Home from "./Home";
+import postsData from "./data/posts.json";
 
 const App = () => {
 	const [selectedPost, setSelectedPost] = useState(null);
 	const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
-		// JSON 데이터를 상태로 설정합니다.
 		setPosts(postsData);
 	}, []);
 
@@ -50,19 +50,7 @@ const App = () => {
 
 			{/* Main Content */}
 			<div className="ml-64 flex-1 p-6">
-				{selectedPost ? (
-					<CodePost post={selectedPost} />
-				) : (
-					<div className="bg-white p-6 rounded-lg shadow-md">
-						<h2 className="text-2xl font-bold text-gray-800 mb-4">
-							Welcome to the Documentation
-						</h2>
-						<p className="text-gray-600">
-							Please select a topic from the sidebar to view the
-							content.
-						</p>
-					</div>
-				)}
+				{selectedPost ? <CodePost post={selectedPost} /> : <Home />}
 			</div>
 		</div>
 	);
