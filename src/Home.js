@@ -4,28 +4,29 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
 	return (
-		<main>
-			<header className="bg-white shadow-md py-4 px-6 mb-6">
-				<h2 className="text-2xl font-bold text-gray-800">
-					Welcome to My Blog
-				</h2>
-			</header>
-			<section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-				<article className="bg-white p-4 rounded-lg shadow">
-					<h3 className="text-xl font-semibold mb-2">Blog Post 1</h3>
-					<p className="text-gray-600">
-						This is a sample blog post description. It gives a brief
-						overview of the content.
-					</p>
-					<Link
-						to="/post/1"
-						className="text-blue-500 hover:underline"
-					>
-						Read More
-					</Link>
-				</article>
-				{/* More blog posts can be added here */}
-			</section>
+		<main className="bg-white p-6 rounded-lg shadow-md">
+			<h2 className="text-3xl font-bold text-gray-800 mb-4">
+				Welcome to the Minsang's Posting Page
+			</h2>
+			<p className="text-gray-600 mb-4">
+				This is a sample documentation site structured like MDN. You can
+				find various tutorials, guides, and API references.
+			</p>
+			{/* <Link to="/post/1" className="text-blue-500 hover:underline">
+				Getting Started
+			</Link>
+			<br />
+			<Link to="/post/2" className="text-blue-500 hover:underline">
+				Tutorials
+			</Link>
+			<br />
+			<Link to="/post/3" className="text-blue-500 hover:underline">
+				API Reference
+			</Link>
+			<br />
+			<Link to="/post/4" className="text-blue-500 hover:underline">
+				Guides
+			</Link> */}
 		</main>
 	);
 };
