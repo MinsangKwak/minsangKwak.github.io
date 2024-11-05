@@ -1,72 +1,16 @@
 // src/App.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import CodePost from "./CodePost";
-
-const posts = [
-	{
-		id: 1,
-		title: "Semantic HTML & CSS Guide",
-		content: `<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        /* 시맨틱 태그 스타일 */
-        /* 스타일 정의 */
-    </style>
-</head>
-<body>
-    <header><h1>사이트 헤더</h1></header>
-    <nav>여기는 내비게이션입니다.</nav>
-    <main>
-        <section>메인 섹션</section>
-        <article>기사 내용</article>
-        <aside>사이드바</aside>
-        <figure><img src="https://placehold.co/600x400" alt="예시 이미지"></figure>
-    </main>
-    <footer>저작권 &copy; 2024.</footer>
-</body>
-</html>`,
-	},
-	{
-		id: 2,
-		title: "Accordion with Right Arrow",
-		content: `<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오른쪽 화살표 아코디언 예제</title>
-    <style>
-        details { margin: 10px 0; }
-        summary { font-weight: bold; cursor: pointer; padding-right: 20px; position: relative; }
-        summary::after { content: "▶"; position: absolute; right: 0; transition: transform 0.3s ease; }
-        details[open] summary::after { transform: rotate(90deg); }
-        .content { padding: 10px; background-color: #f9f9f9; }
-    </style>
-</head>
-<body>
-    <h2>오른쪽 화살표 아코디언 예제</h2>
-    <details>
-        <summary>섹션 1</summary>
-        <div class="content"><p>이것은 섹션 1의 내용입니다.</p></div>
-    </details>
-    <details>
-        <summary>섹션 2</summary>
-        <div class="content"><p>이것은 섹션 2의 내용입니다.</p></div>
-    </details>
-    <details>
-        <summary>섹션 3</summary>
-        <div class="content"><p>이것은 섹션 3의 내용입니다.</p></div>
-    </details>
-</body>
-</html>`,
-	},
-];
+import postsData from "./data/posts.json"; // JSON 파일에서 데이터를 가져옵니다.
 
 const App = () => {
 	const [selectedPost, setSelectedPost] = useState(null);
+	const [posts, setPosts] = useState([]);
+
+	useEffect(() => {
+		// JSON 데이터를 상태로 설정합니다.
+		setPosts(postsData);
+	}, []);
 
 	return (
 		<div className="flex min-h-screen bg-gray-100">

@@ -1,0 +1,12 @@
+[
+	{
+		"id": 1,
+		"title": "Semantic HTML & CSS Guide",
+		"content": "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <style>\n        /* 시맨틱 태그 스타일 */\n        /* 스타일 정의 */\n    </style>\n</head>\n<body>\n    <header><h1>사이트 헤더</h1></header>\n    <nav>여기는 내비게이션입니다.</nav>\n    <main>\n        <section>메인 섹션</section>\n        <article>기사 내용</article>\n        <aside>사이드바</aside>\n        <figure><img src=\"https://placehold.co/600x100\" alt=\"예시 이미지\"></figure>\n    </main>\n    <footer>저작권 &copy; 2024.</footer>\n</body>\n</html>"
+	},
+	{
+		"id": 2,
+		"title": "Accordion with Right Arrow",
+		"content": "<!DOCTYPE html>\n<html lang=\"ko\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>오른쪽 화살표 아코디언 예제</title>\n    <style>\n        details { margin: 10px 0; }\n        summary { font-weight: bold; cursor: pointer; padding-right: 20px; position: relative; }\n        summary::after { content: \"▶\"; position: absolute; right: 0; transition: transform 0.3s ease; }\n        details[open] summary::after { transform: rotate(90deg); }\n        .content { padding: 10px; background-color: #f9f9f9; }\n    </style>\n</head>\n<body>\n    <h2>오른쪽 화살표 아코디언 예제</h2>\n    <details>\n        <summary>섹션 1</summary>\n        <div class=\"content\"><p>이것은 섹션 1의 내용입니다.</p></div>\n    </details>\n    <details>\n        <summary>섹션 2</summary>\n        <div class=\"content\"><p>이것은 섹션 2의 내용입니다.</p></div>\n    </details>\n    <details>\n        <summary>섹션 3</summary>\n        <div class=\"content\"><p>이것은 섹션 3의 내용입니다.</p></div>\n    </details>\n</body>\n</html>"
+	}
+]
