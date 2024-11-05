@@ -92,21 +92,27 @@ const ConvexGeometryComponent = () => {
 				renderer.render(scene, camera);
 			};
 			animate();
-
-			// Handle Resize
-			window.addEventListener("resize", onWindowResize);
 		}
 
-		function onWindowResize() {
-			camera.aspect = 1;
-			camera.updateProjectionMatrix();
-			renderer.setSize(300, 300);
-		}
+		// Window resize handler
+		const onWindowResize = () => {
+			if (camera && renderer) {
+				camera.aspect = 1;
+				camera.updateProjectionMatrix();
+				renderer.setSize(300, 300);
+			}
+		};
 
+		// Initialize scene
 		init();
 
+		// Event listener and cleanup
+		window.addEventListener("resize", onWindowResize);
+
 		return () => {
-			mountRef.current.removeChild(renderer.domElement);
+			if (mountRef.current && renderer) {
+				mountRef.current.removeChild(renderer.domElement);
+			}
 			renderer.dispose();
 			window.removeEventListener("resize", onWindowResize);
 		};
