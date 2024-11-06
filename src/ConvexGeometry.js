@@ -19,7 +19,7 @@ const ConvexGeometryComponent = () => {
 				alpha: true,
 			});
 			renderer.setPixelRatio(window.devicePixelRatio);
-			renderer.setSize(300, 300); // 작은 크기로 설정
+			renderer.setSize(500, 500); // 작은 크기로 설정
 			mountRef.current.appendChild(renderer.domElement);
 
 			// Camera
@@ -99,7 +99,7 @@ const ConvexGeometryComponent = () => {
 			if (camera && renderer) {
 				camera.aspect = 1;
 				camera.updateProjectionMatrix();
-				renderer.setSize(300, 300);
+				renderer.setSize(500, 500);
 			}
 		};
 
@@ -118,7 +118,7 @@ const ConvexGeometryComponent = () => {
 		};
 	}, []);
 
-	return <div ref={mountRef} style={{ width: "300px", height: "300px" }} />;
+	return <div ref={mountRef} style={{ width: "500px", height: "500px" }} />;
 };
 
 export default ConvexGeometryComponent;

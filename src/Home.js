@@ -11,9 +11,6 @@ const Home = () => {
 			</div>
 
 			{/* 텍스트 콘텐츠 */}
-			<h1 className="text-4xl font-bold text-gray-800 mt-6">
-				Blog Posting
-			</h1>
 			<p className="text-gray-600 mt-4 text-center max-w-md">
 				Welcome to my blog! Here, you’ll find insights on software
 				development, tutorials, and guides that I’ve gathered from my
