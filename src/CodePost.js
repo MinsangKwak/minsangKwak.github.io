@@ -13,7 +13,7 @@ const CodePost = ({ posts, isBlogView }) => {
 	// Blog View 스타일 적용 (MDN 스타일)
 	if (isBlogView) {
 		return (
-			<div className="max-w-3xl mx-auto p-6 bg-white mt-20 shadow-md rounded-lg">
+			<div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
 				<h1 className="text-4xl font-bold text-gray-900 mb-2">
 					{post.title}
 				</h1>
@@ -45,7 +45,7 @@ const CodePost = ({ posts, isBlogView }) => {
 
 	// References View 스타일 유지 (메모 및 Live Preview 포함)
 	return (
-		<div className="max-w-3xl mx-auto p-6 bg-white mt-20 shadow-md rounded-lg">
+		<div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-lg">
 			<h1 className="text-4xl font-bold text-gray-900 mb-6">
 				{post.title}
 			</h1>
