@@ -1,7 +1,8 @@
 # minsangKwak.github.io
 
-**React**와 **Tailwind CSS**로 제작된 개인 블로그 프로젝트입니다. <br/>
-이 프로젝트는 오른쪽에 고정된 메뉴로 이동을 할 수 있도록 구현하였습니다. <br/>
+이 프로젝트는 React와 React Router를 사용해 구현한 블로그 사이트로, <br/>
+MDN 스타일을 참고한 디자인으로, 학습과 정보를 공유할 수 있는 플랫폼을 목표로 합니다. <br/>
+코드 미리보기 기능을 제공합니다. <br/><br/>
 사이트는 [GitHub Pages](https://minsangkwak.github.io/)에 호스팅됩니다.
 
 ## 프로젝트 개요
@@ -33,23 +34,28 @@
 ├── public               # index.html 등 퍼블릭 파일
 └── src                  # 소스 파일
     ├── data
-    │   └── posts.json   # 블로그 포스트 데이터 파일 (JSON 형식)
-    ├── App.js           # 메인 컴포넌트
-    ├── CodePost.js      # 코드 포스트 컴포넌트 (코드 편집기 및 미리보기)
+    │   ├── blogPosts.json   # Blog 탭 포스트 데이터 파일
+    │   └── codePosts.json   # References 탭 포스트 데이터 파일
+    ├── App.js           # 메인 컴포넌트 (전체 레이아웃 및 라우팅)
+    ├── CodePost.js      # 포스트 상세 페이지 컴포넌트 (포스트 내용 및 코드 미리보기)
     ├── Home.js          # 홈 화면 컴포넌트
+    ├── Blog.js          # Blog 탭에서 포스트 목록과 상세 페이지를 표시하는 컴포넌트
+    ├── PostDetail.js    # 포스트 상세 페이지 컴포넌트
     ├── index.js         # 진입 파일
     ├── index.css        # Tailwind CSS 설정 파일
-    └── PostDetail.js    # 포스트 상세 페이지 컴포넌트
+    └── ConvexGeometry.js # Three.js 3D 그래픽 관련 파일
 ```
 
 ### 주요 파일 설명
 
--   **App.js**: 전체 레이아웃과 네비게이션을 담당하는 메인 컴포넌트입니다.
--   **CodePost.js**: 포스트 제목과 내용을 표시하고 코드 미리보기를 제공하는 컴포넌트입니다.
--   **Home.js**: 블로그의 메인 홈 페이지로, 초기 안내 문구가 표시됩니다.
--   **posts.json**: JSON 형식으로 저장된 포스트 데이터 파일입니다. 각 포스트의 제목, ID, 내용 등이 포함됩니다.
+-   **App.js**: 전체 레이아웃과 네비게이션을 담당하는 메인 컴포넌트로, 사이드바와 메인 콘텐츠 영역을 포함합니다. isBlogView 상태를 통해 Blog와 References 탭을 구분합니다.
+-   **CodePost.js**: 포스트 제목과 내용을 표시하고, 코드 미리보기 기능을 제공하는 컴포넌트입니다. Blog와 References에 따라 디자인이 다르게 표시됩니다.
+-   **Blog.js**: Blog 탭에서 포스트 목록을 표시하며, 각 포스트의 상세 페이지로 이동할 수 있습니다.
+-   **Home.js**: 블로그의 초기 페이지로, 사용자에게 안내 문구를 제공합니다.
+-   **blogPosts.json / codePosts.json**: JSON 형식의 포스트 데이터 파일로, 각 포스트의 제목, ID, 내용 등이 포함됩니다.
 -   **index.js**: React 애플리케이션의 진입 파일입니다.
 -   **index.css**: Tailwind CSS 기본 스타일을 불러오는 파일입니다.
+-   **ConvexGeometry.js**: Three.js를 사용해 3D 그래픽을 렌더링하는 데 필요한 파일입니다.
 
 ### 설치 및 실행 방법
 
