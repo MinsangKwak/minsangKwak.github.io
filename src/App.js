@@ -1,95 +1,135 @@
 // src/App.js
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import CodePost from "./CodePost";
 import Home from "./Home";
-import postsData from "./data/posts.json";
-import { Bars3Icon, HomeIcon } from "@heroicons/react/24/solid";
+import Blog from "./Blog";
+import codePostsData from "./data/codePosts.json";
+import blogPostsData from "./data/blogPosts.json";
+import { Bars3Icon } from "@heroicons/react/24/solid";
 
 const App = () => {
-	const [selectedPost, setSelectedPost] = useState(null);
-	const [posts, setPosts] = useState([]);
-	const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태 추가
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+	const [isBlogView, setIsBlogView] = useState(false);
 
-	useEffect(() => {
-		setPosts(postsData);
-	}, []);
+	const openSidebar = (isBlog) => {
+		setIsBlogView(isBlog);
+		setIsSidebarOpen(true);
+	};
 
 	const toggleSidebar = () => {
 		setIsSidebarOpen(!isSidebarOpen);
 	};
 
 	return (
-		<div className="flex flex-col min-h-screen bg-gray-100">
-			{/* Header */}
-			<header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-end bg-white shadow-md h-16 px-4">
-				{/* 햄버거 버튼 */}
-				<button
-					className="p-2 text-gray-700 rounded focus:outline-none"
-					onClick={toggleSidebar}
-				>
-					<Bars3Icon className="w-6 h-6" />
-				</button>
-			</header>
-
-			{/* 사이드바 오버레이 */}
-			<aside
-				className={`fixed top-0 right-0 h-full bg-black text-white w-64 transform transition-transform duration-300 z-20 ${
-					isSidebarOpen ? "translate-x-0" : "translate-x-full"
-				} flex flex-col justify-between`}
-			>
-				{/* 메뉴 목록 */}
-				<nav className="p-4 space-y-4 mt-16 flex-grow">
-					{" "}
-					{/* 상단 여백 추가 */}
-					<ul className="flex flex-col gap-1">
-						{posts.map((post) => (
-							<li key={post.id}>
-								<button
-									onClick={() => {
-										setSelectedPost(post);
-										setIsSidebarOpen(false); // 메뉴 클릭 시 닫기
-									}}
-									className={`block w-full text-left py-2 px-4 rounded ${
-										selectedPost &&
-										selectedPost.id === post.id
-											? "bg-gray-700"
-											: "hover:bg-gray-700"
-									}`}
-								>
-									{post.title}
-								</button>
-							</li>
-						))}
+		<Router>
+			<div className="flex flex-col min-h-screen bg-gray-100">
+				<header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between bg-white shadow-md h-16 px-4">
+					<h1>
+						<Link to="/" className="text-gray-900 font-bold">
+							MS
+						</Link>
+					</h1>
+					<ul className="flex items-center space-x-4">
+						<li>
+							<button
+								onClick={() => openSidebar(false)}
+								className="text-gray-700 focus:outline-none"
+							>
+								References
+							</button>
+						</li>
+						<li>
+							<button
+								onClick={() => openSidebar(true)}
+								className="text-gray-700 focus:outline-none"
+							>
+								Blog
+							</button>
+						</li>
+						<li>
+							<button
+								onClick={toggleSidebar}
+								className="text-gray-700 p-2 rounded focus:outline-none"
+							>
+								<Bars3Icon className="w-6 h-6" />
+							</button>
+						</li>
 					</ul>
-				</nav>
+				</header>
 
-				{/* 홈 버튼 */}
-				<button
-					onClick={() => {
-						setSelectedPost(null);
-						setIsSidebarOpen(false);
-					}}
-					className="w-full text-left py-4 px-4 bg-gray-800 hover:bg-gray-700 flex items-center space-x-2"
+				{/* Sidebar */}
+				<aside
+					className={`fixed top-0 right-0 h-full bg-black text-white w-64 transform transition-transform duration-300 z-20 ${
+						isSidebarOpen ? "translate-x-0" : "translate-x-full"
+					} flex flex-col justify-between`}
 				>
-					<span>Home</span>
-				</button>
-			</aside>
+					<nav className="p-4 space-y-4 mt-16 flex-grow">
+						<h2 className="text-lg font-bold">
+							{isBlogView ? "Blog Posts" : "References"}
+						</h2>
+						<ul className="flex flex-col gap-1">
+							<li>
+								<Link
+									to="/"
+									onClick={() => setIsSidebarOpen(false)}
+									className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
+								>
+									Home
+								</Link>
+							</li>
+							{(isBlogView ? blogPostsData : codePostsData).map(
+								(post) => (
+									<li key={post.id}>
+										<Link
+											to={`/post/${post.id}`}
+											onClick={() =>
+												setIsSidebarOpen(false)
+											}
+											className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
+										>
+											{post.title}
+										</Link>
+									</li>
+								)
+							)}
+						</ul>
+					</nav>
+				</aside>
 
-			{/* 오버레이 백그라운드 */}
-			{isSidebarOpen && (
-				<div
-					className="fixed inset-0 bg-black opacity-50 z-10"
-					onClick={toggleSidebar} // 클릭 시 사이드바 닫기
-				></div>
-			)}
+				{/* Overlay Background */}
+				{isSidebarOpen && (
+					<div
+						className="fixed inset-0 bg-black opacity-50 z-10"
+						onClick={toggleSidebar} // 클릭 시 사이드바 닫기
+					></div>
+				)}
 
-			{/* 메인 콘텐츠 */}
-			<div className="flex-1 mt-16 p-6">
-				{" "}
-				{/* 헤더 높이만큼 마진 추가 */}
-				{selectedPost ? <CodePost post={selectedPost} /> : <Home />}
+				{/* Main Content Area */}
+				<div className="flex-1 mt-16 p-6 max-w-full md:px-24">
+					<Routes>
+						<Route path="/" element={<Home />} />
+						<Route
+							path="/blog"
+							element={<Blog posts={blogPostsData} />}
+						/>
+						<Route
+							path="/post/:postId"
+							element={
+								<CodePost
+									posts={
+										isBlogView
+											? blogPostsData
+											: codePostsData
+									}
+									isBlogView={isBlogView}
+								/>
+							}
+						/>
+					</Routes>
+				</div>
 			</div>
-		</div>
+		</Router>
 	);
 };
 

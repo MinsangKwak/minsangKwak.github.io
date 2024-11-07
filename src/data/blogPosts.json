@@ -1,0 +1,16 @@
+[
+	{
+		"id": 1,
+		"title": "React의 기본 개념",
+		"subtitle": "React의 도입 배경과 기본 개념",
+		"excerpt": "React는 사용자 인터페이스를 만들기 위한 JavaScript 라이브러리입니다. 이번 포스트에서는 React의 핵심 개념을 다룹니다.",
+		"content": "React는 Facebook에서 처음 개발된 JavaScript 라이브러리로, 사용자의 인터페이스(UI)를 효율적으로 구축하기 위해 설계되었습니다. 2013년에 오픈 소스로 공개된 이후, 웹 개발 커뮤니티에서 폭넓은 인기를 얻었습니다... (생략)"
+	},
+	{
+		"id": 2,
+		"title": "useState와 useEffect 이해하기",
+		"subtitle": "React의 주요 훅(Hooks) 이해",
+		"excerpt": "React의 훅 중에서도 가장 자주 사용하는 useState와 useEffect에 대해 알아보겠습니다.",
+		"content": "React의 상태 관리와 생명주기 관리는 애플리케이션의 동작을 결정짓는 중요한 요소입니다. 그중에서도 useState와 useEffect 훅은 가장 기본적이면서도 자주 사용되는 훅입니다... (예시)"
+	}
+]
