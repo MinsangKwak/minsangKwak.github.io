@@ -7,6 +7,8 @@ import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils";
 
 const ConvexGeometryComponent = () => {
 	const mountRef = useRef(null);
+	const WIDTH = 300;  // 설정할 너비
+	const HEIGHT = 300; // 설정할 높이
 
 	useEffect(() => {
 		let camera, scene, renderer, group;
@@ -19,11 +21,11 @@ const ConvexGeometryComponent = () => {
 				alpha: true,
 			});
 			renderer.setPixelRatio(window.devicePixelRatio);
-			renderer.setSize(500, 500); // 작은 크기로 설정
+			renderer.setSize(WIDTH, HEIGHT);
 			mountRef.current.appendChild(renderer.domElement);
 
 			// Camera
-			camera = new THREE.PerspectiveCamera(40, 1, 1, 1000);
+			camera = new THREE.PerspectiveCamera(40, WIDTH / HEIGHT, 1, 1000);
 			camera.position.set(15, 20, 30);
 			scene.add(camera);
 
@@ -97,9 +99,9 @@ const ConvexGeometryComponent = () => {
 		// Window resize handler
 		const onWindowResize = () => {
 			if (camera && renderer) {
-				camera.aspect = 1;
+				camera.aspect = WIDTH / HEIGHT;
 				camera.updateProjectionMatrix();
-				renderer.setSize(500, 500);
+				renderer.setSize(WIDTH, HEIGHT);
 			}
 		};
 
@@ -118,7 +120,7 @@ const ConvexGeometryComponent = () => {
 		};
 	}, []);
 
-	return <div ref={mountRef} style={{ width: "500px", height: "500px" }} />;
+	return <div ref={mountRef} style={{ width: `${WIDTH}px`, height: `${HEIGHT}px` }} />;
 };
 
 export default ConvexGeometryComponent;

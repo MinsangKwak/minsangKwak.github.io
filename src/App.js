@@ -21,13 +21,18 @@ const App = () => {
 		setIsSidebarOpen(!isSidebarOpen);
 	};
 
+	// 텍스트 말줄임 처리 함수
+	const truncateText = (text, maxLength) => {
+		return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
+	};
+
 	return (
 		<Router>
 			<div className="flex flex-col min-h-screen bg-gray-100">
 				<header className="fixed top-0 left-0 right-0 z-30 flex items-center justify-between bg-white shadow-md h-16 px-4">
 					<h1>
 						<Link to="/" className="text-gray-900 font-bold">
-							MS
+							CODE DIARY
 						</Link>
 					</h1>
 					<ul className="flex items-center space-x-4">
@@ -88,7 +93,17 @@ const App = () => {
 											}
 											className="block w-full text-left py-2 px-4 rounded hover:bg-gray-700"
 										>
-											{post.title}
+											<div className="font-bold">
+												{post.title}
+											</div>
+											<div className="text-sm text-gray-300">
+												{truncateText(
+													isBlogView
+														? post.excerpt
+														: post.memo,
+													30 // 원하는 최대 글자 수 설정
+												)}
+											</div>
 										</Link>
 									</li>
 								)
