@@ -21,12 +21,15 @@ const Header = ({ openSidebar }) => {
 				)}
 				<h1>
 					<Link to="/" className="text-gray-900 font-bold">
-						MS
+						CODE DIARY
 					</Link>
 				</h1>
 			</div>
+
+			{/* 메뉴 버튼 */}
 			<ul className="flex items-center space-x-4">
-				<li>
+				{/* PC 화면에서 보이는 References와 Blog 버튼 */}
+				<li className="hidden md:block">
 					<button
 						onClick={() => openSidebar(false)}
 						className="text-gray-700 focus:outline-none"
@@ -34,7 +37,7 @@ const Header = ({ openSidebar }) => {
 						References
 					</button>
 				</li>
-				<li>
+				<li className="hidden md:block">
 					<button
 						onClick={() => openSidebar(true)}
 						className="text-gray-700 focus:outline-none"
@@ -42,7 +45,9 @@ const Header = ({ openSidebar }) => {
 						Blog
 					</button>
 				</li>
-				<li>
+
+				{/* 모바일 화면에서만 보이는 메뉴 버튼 */}
+				<li className="md:hidden">
 					<button
 						onClick={() => openSidebar(true)}
 						className="text-gray-700 p-2 rounded focus:outline-none"
