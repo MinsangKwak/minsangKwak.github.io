@@ -6,23 +6,19 @@ import { Link } from "react-router-dom";
 import ConvexGeometryComponent from "./ConvexGeometry";
 
 const Home = () => {
-	// 최신 게시물 상위 3개씩 표시
 	const recentBlogPosts = blogPostsData.slice(0, 3);
 	const recentReferencePosts = codePostsData.slice(0, 3);
 
-	// 텍스트 말줄임 처리 함수
 	const truncateText = (text, maxLength) => {
 		return text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
 	};
 
 	return (
 		<main className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-6">
-			{/* 다각형 컴포넌트 */}
 			<div className="flex justify-center items-center mb-6">
 				<ConvexGeometryComponent />
 			</div>
 
-			{/* 인사말과 소개 */}
 			<p className="text-gray-700 mt-4 text-center max-w-md">
 				안녕하세요! <br/>
 				퇴근 후 틈틈이 만들어 보고 있는 블로그 사이트입니다. <br/>
@@ -33,7 +29,6 @@ const Home = () => {
 				</a>
 			</p>
 
-			{/* 최근 Reference 포스트 섹션 */}
 			<section className="mt-8 w-full max-w-lg">
 				<h2 className="text-xl font-semibold mb-4">References</h2>
 				<ul className="space-y-3">
@@ -43,14 +38,13 @@ const Home = () => {
 								{post.title}
 							</Link>
 							<p className="text-gray-500 text-sm mt-1">
-								{truncateText(post.memo, 30)} {/* 말줄임 적용 */}
+								{truncateText(post.memo, 30)}
 							</p>
 						</li>
 					))}
 				</ul>
 			</section>
 
-			{/* 최근 Blog 포스트 섹션 */}
 			<section className="mt-8 w-full max-w-lg">
 				<h2 className="text-xl font-semibold mb-4">Blog</h2>
 				<ul className="space-y-3">
@@ -60,7 +54,7 @@ const Home = () => {
 								{post.title}
 							</Link>
 							<p className="text-gray-500 text-sm mt-1">
-								{truncateText(post.excerpt, 30)} {/* 말줄임 적용 */}
+								{truncateText(post.excerpt, 30)}
 							</p>
 						</li>
 					))}
