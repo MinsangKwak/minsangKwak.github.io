@@ -7,8 +7,10 @@ import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils";
 
 const ConvexGeometryComponent = () => {
 	const mountRef = useRef(null);
-	const WIDTH = 300;  // 설정할 너비
-	const HEIGHT = 300; // 설정할 높이
+	const WIDTH = 150; // 설정할 너비
+	const HEIGHT = 150; // 설정할 높이
+	// const WIDTH = window.innerWidth;
+	// const HEIGHT = window.innerHeight;
 
 	useEffect(() => {
 		let camera, scene, renderer, group;
@@ -120,7 +122,12 @@ const ConvexGeometryComponent = () => {
 		};
 	}, []);
 
-	return <div ref={mountRef} style={{ width: `${WIDTH}px`, height: `${HEIGHT}px` }} />;
+	return (
+		<div
+			ref={mountRef}
+			style={{ width: `${WIDTH}px`, height: `${HEIGHT}px` }}
+		/>
+	);
 };
 
 export default ConvexGeometryComponent;

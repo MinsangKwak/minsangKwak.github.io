@@ -1,7 +1,7 @@
 // src/Header.js
 import React from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Bars3Icon } from "@heroicons/react/24/solid";
+import { Bars3Icon, HomeIcon } from "@heroicons/react/24/solid";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline"; // 화살표 아이콘 추가
 
 const Header = ({ openSidebar }) => {
@@ -13,13 +13,22 @@ const Header = ({ openSidebar }) => {
 			<div className="flex items-center space-x-4">
 				{/* Back 버튼: 루트("/")가 아닐 때만 표시 */}
 				{location.pathname !== "/" ? (
-					<button
-						onClick={() => navigate(-1)}
-						className="text-gray-700 focus:outline-none"
-					>
-						<ArrowLeftIcon className="w-6 h-6 text-gray-700" />{" "}
-						{/* 화살표 아이콘 */}
-					</button>
+					<>
+						<button
+							onClick={() => navigate(-1)}
+							className="text-gray-700 focus:outline-none"
+						>
+							<ArrowLeftIcon className="w-6 h-6 text-gray-700" />{" "}
+							{/* 화살표 아이콘 */}
+						</button>
+						<button
+							onClick={() => navigate("/")}
+							className="text-gray-700 focus:outline-none"
+						>
+							<HomeIcon className="w-6 h-6 text-gray-700" />{" "}
+							{/* 화살표 아이콘 */}
+						</button>
+					</>
 				) : (
 					<h1>
 						<Link to="/" className="text-gray-900 font-bold">
