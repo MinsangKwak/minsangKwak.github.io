@@ -24,8 +24,8 @@ const Home = () => {
 			<p className="text-gray-700 mt-4 text-center max-w-md">
 				안녕하세요! <br />
 				퇴근 후 틈틈이 만들어 보고 있는 블로그 사이트입니다. <br />
-				현재 게시된 포스트는 Reference와 Blog로, 다양한 학습 자료와 개발
-				정보를 공유하고 있어요. <br />
+				현재 게시된 포스트는 Reference와 Blog로, 이외에도 개발 관련
+				정보를 써 볼 예정입니다. <br />
 				<br />
 				아직 많은 기능이 있지는 않지만 추가 되었으면 하는 기능이 있다면
 				아래 메일로 편하게 연락주세요 :) <br />
