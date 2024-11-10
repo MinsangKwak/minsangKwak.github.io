@@ -32,18 +32,21 @@ MDN 스타일을 참고한 디자인으로, 학습과 정보를 공유할 수 �
 ├── build                # 프로덕션 빌드 파일
 ├── node_modules         # Node.js 의존성
 ├── public               # index.html 등 퍼블릭 파일
-└── src                  # 소스 파일
-    ├── data
-    │   ├── blogPosts.json   # Blog 탭 포스트 데이터 파일
-    │   └── codePosts.json   # References 탭 포스트 데이터 파일
-    ├── App.js           # 메인 컴포넌트 (전체 레이아웃 및 라우팅)
-    ├── CodePost.js      # 포스트 상세 페이지 컴포넌트 (포스트 내용 및 코드 미리보기)
-    ├── Home.js          # 홈 화면 컴포넌트
-    ├── Blog.js          # Blog 탭에서 포스트 목록과 상세 페이지를 표시하는 컴포넌트
-    ├── PostDetail.js    # 포스트 상세 페이지 컴포넌트
-    ├── index.js         # 진입 파일
-    ├── index.css        # Tailwind CSS 설정 파일
-    └── ConvexGeometry.js # Three.js 3D 그래픽 관련 파일
+├── src                  # 소스 파일
+│   ├── data
+│   │   ├── blogPosts.json   # Blog 탭 포스트 데이터 파일
+│   │   └── codePosts.json   # References 탭 포스트 데이터 파일
+│   ├── App.js           # 메인 컴포넌트 (전체 레이아웃 및 라우팅)
+│   ├── Blog.js          # Blog 탭에서 포스트 목록과 상세 페이지를 표시하는 컴포넌트
+│   ├── CodePost.js      # 포스트 상세 페이지 컴포넌트 (포스트 내용 및 코드 미리보기)
+│   ├── ConvexGeometry.js # Three.js 3D 그래픽 관련 파일
+│   ├── Header.js        # 헤더 컴포넌트 (네비게이션 메뉴 포함)
+│   ├── Home.js          # 홈 화면 컴포넌트
+│   ├── index.css        # Tailwind CSS 설정 파일
+│   ├── index.js         # 진입 파일
+│   ├── PostDetail.js    # 포스트 상세 페이지 컴포넌트
+└── README.md            # 프로젝트 설명서
+
 ```
 
 ### 주요 파일 설명
@@ -51,6 +54,7 @@ MDN 스타일을 참고한 디자인으로, 학습과 정보를 공유할 수 �
 -   **App.js**: 전체 레이아웃과 네비게이션을 담당하는 메인 컴포넌트로, 사이드바와 메인 콘텐츠 영역을 포함합니다. isBlogView 상태를 통해 Blog와 References 탭을 구분합니다.
 -   **CodePost.js**: 포스트 제목과 내용을 표시하고, 코드 미리보기 기능을 제공하는 컴포넌트입니다. Blog와 References에 따라 디자인이 다르게 표시됩니다.
 -   **Blog.js**: Blog 탭에서 포스트 목록을 표시하며, 각 포스트의 상세 페이지로 이동할 수 있습니다.
+-   **PostDetail.js**: 특정 포스트의 상세 정보를 표시하는 컴포넌트입니다. URL의 id 파라미터를 사용해 해당 포스트의 내용을 로드하며, 사용자가 홈 화면으로 돌아갈 수 있는 링크도 제공합니다.
 -   **Home.js**: 블로그의 초기 페이지로, 사용자에게 안내 문구를 제공합니다.
 -   **blogPosts.json / codePosts.json**: JSON 형식의 포스트 데이터 파일로, 각 포스트의 제목, ID, 내용 등이 포함됩니다.
 -   **index.js**: React 애플리케이션의 진입 파일입니다.
@@ -105,5 +109,5 @@ npm start
 
 ### 추가 정보
 
--   posts.json 파일에 새로운 포스트를 추가하면 사이드바에 자동으로 반영되므로, 확장성이 뛰어나며 관리가 쉽습니다.
--   코드 미리보기 기능은 각 포스트의 코드를 iframe으로 렌더링하여 실제로 실행되는 결과를 보여줍니다.
+-   blogPosts.json 및 codePosts.json 파일에 새로운 포스트를 추가하면 사이드바에 자동으로 반영되어 관리가 용이합니다. 이로 인해 블로그 콘텐츠를 확장하기 쉽습니다.
+-   코드 미리보기 기능은 각 포스트의 코드를 실제로 실행하여 결과를 확인할 수 있도록 제공합니다. 코드 미리보기는 코드 편집기와 함께 렌더링되어 사용자에게 더 나은 학습 경험을 제공합니다.
