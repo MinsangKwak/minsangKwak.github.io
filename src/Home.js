@@ -26,13 +26,6 @@ const Home = () => {
 					<p className="text-3xl lg:text-5xl mt-2 lg:mt-4">
 						This blog is a personal project created after work hours to share insights and resources related to development.
 					</p>
-					<p className="text-3xl lg:text-5xl mt-2 lg:mt-4">
-						<span>Feel free to reach out with any suggestions.</span>
-						<br />
-						<a href="mailto:kmsdevwork@gmail.com" className="text-blue-500 hover:underline text-lg lg:text-xl">
-							Contact via G-mail
-						</a>
-					</p>
 				</div>
 			</div>
 

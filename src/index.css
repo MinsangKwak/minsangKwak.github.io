@@ -7,3 +7,27 @@
 body {
 	font-family: "Pretendard", sans-serif;
 }
+
+/* keyframe animation */
+@keyframes fadeInOut {
+	0% {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+	10% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	90% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	100% {
+		transform: translateY(100%);
+		opacity: 0;
+	}
+}
+
+.animate-fade-in-out {
+	animation: fadeInOut 5s ease forwards;
+}
