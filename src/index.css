@@ -8,6 +8,37 @@ body {
 	font-family: "Pretendard", sans-serif;
 }
 
+.text-outline {
+	color: #222222;
+	text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8),
+		-1px -1px 2px rgba(255, 255, 255, 0.8);
+}
+
+.bg-gradient-rainbow {
+	background: linear-gradient(
+		135deg,
+		rgba(255, 0, 150, 0.5),
+		rgba(255, 255, 0, 0.5),
+		rgba(0, 255, 150, 0.5),
+		rgba(0, 150, 255, 0.5),
+		rgba(255, 0, 150, 0.5)
+	);
+	background-size: 200% 200%;
+	animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 /* keyframe animation */
 @keyframes fadeInOut {
 	0% {

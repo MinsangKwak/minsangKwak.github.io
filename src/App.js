@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import CodePost from "./CodePost";
@@ -23,44 +22,51 @@ const App = () => {
 
 	return (
 		<Router>
-			<div className="flex flex-col min-h-screen bg-gray-100">
-				<Header openSidebar={openSidebar} isSidebarOpen={isSidebarOpen} />
+			<div className="flex flex-col min-h-screen bg-gradient-rainbow">
+				<Header
+					openSidebar={openSidebar}
+					isSidebarOpen={isSidebarOpen}
+				/>
 
 				<aside
-					className={`fixed top-0 right-0 h-full bg-white text-black w-64 transform transition-transform duration-300 z-20 ${
+					className={`fixed top-0 right-0 h-full bg-white/20 backdrop-blur-md text-gray-200 w-64 transform transition-transform duration-300 z-20 shadow-lg border border-white/10 ${
 						isSidebarOpen ? "translate-x-0" : "translate-x-full"
-					} flex flex-col justify-between`}
+					} flex flex-col justify-between rounded-l-lg`}
 				>
 					<nav className="p-4 space-y-4 mt-16 flex-grow overflow-y-auto">
-						<h2 className="text-lg font-bold">Blog</h2>
+						<h2 className="text-lg font-bold text-white/90">
+							Blog
+						</h2>
 						<ul className="flex flex-col gap-1">
 							{blogPostsData.map((post) => (
 								<li key={post.id}>
 									<Link
-										to={`/blog/${post.id}`} // 블로그 포스트는 /blog 경로로 설정
+										to={`/blog/${post.id}`}
 										onClick={() => {
 											setIsSidebarOpen(false);
 											setIsBlogView(true);
 										}}
-										className="block w-full text-left py-2 px-4 rounded hover:bg-gray-100"
+										className="block w-full text-left py-2 px-4 rounded hover:bg-white/10 text-white/80 hover:text-white"
 									>
 										{post.title}
 									</Link>
 								</li>
 							))}
 						</ul>
-						
-						<h2 className="text-lg font-bold mt-6">References</h2>
+
+						<h2 className="text-lg font-bold mt-6 text-white/90">
+							References
+						</h2>
 						<ul className="flex flex-col gap-1">
 							{codePostsData.map((post) => (
 								<li key={post.id}>
 									<Link
-										to={`/reference/${post.id}`} // 레퍼런스 포스트는 /reference 경로로 설정
+										to={`/reference/${post.id}`}
 										onClick={() => {
 											setIsSidebarOpen(false);
 											setIsBlogView(false);
 										}}
-										className="block w-full text-left py-2 px-4 rounded hover:bg-gray-100"
+										className="block w-full text-left py-2 px-4 rounded hover:bg-white/10 text-white/80 hover:text-white"
 									>
 										{post.title}
 									</Link>
@@ -72,22 +78,35 @@ const App = () => {
 
 				{isSidebarOpen && (
 					<div
-						className="fixed inset-0 bg-black opacity-50 z-10"
+						className="fixed inset-0 bg-black/40 backdrop-blur-sm z-10"
 						onClick={toggleSidebar}
 					></div>
 				)}
 
-				<div className="flex-1 mt-16 p-6 max-w-full md:px-24">
+				<div className="flex-1 mt-16 p-6 max-w-full md:px-24 bg-white/20 backdrop-blur-lg border border-white/10 shadow-md rounded-lg text-gray-200">
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route path="/blog" element={<Blog posts={blogPostsData} />} />
+						<Route
+							path="/blog"
+							element={<Blog posts={blogPostsData} />}
+						/>
 						<Route
 							path="/blog/:postId"
-							element={<CodePost posts={blogPostsData} isBlogView={true} />} // blogPostsData 사용
+							element={
+								<CodePost
+									posts={blogPostsData}
+									isBlogView={true}
+								/>
+							}
 						/>
 						<Route
 							path="/reference/:postId"
-							element={<CodePost posts={codePostsData} isBlogView={false} />} // codePostsData 사용
+							element={
+								<CodePost
+									posts={codePostsData}
+									isBlogView={false}
+								/>
+							}
 						/>
 					</Routes>
 				</div>
