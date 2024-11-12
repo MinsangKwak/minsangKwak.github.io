@@ -52,7 +52,7 @@ const Home = () => {
 
 			<div className="w-full max-w-5xl flex flex-col md:flex-row md:space-x-8">
 				{/* Blog Section */}
-				<section className="w-full mt-8 md:mt-0 md:w-1/2">
+				<section className="w-full md:w-1/2">
 					<div className="flex justify-between items-center mb-4">
 						<h2 className="text-xl font-semibold">Blog</h2>
 						{visibleBlogPosts < blogPostsData.length && (
@@ -81,7 +81,7 @@ const Home = () => {
 					</ul>
 				</section>
 				{/* References Section */}
-				<section className="w-full md:w-1/2">
+				<section className="w-full mt-8 md:mt-0 md:w-1/2">
 					<div className="flex justify-between items-center mb-4">
 						<h2 className="text-xl font-semibold">References</h2>
 						{visibleReferencePosts < codePostsData.length && (
