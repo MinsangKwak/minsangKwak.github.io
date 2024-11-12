@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import CodePost from "./CodePost";
-import Home from "./Home";
-import Blog from "./Blog";
+import CodePost from "./Pages/CodePost";
+import Home from "./Pages/Home";
+import Blog from "./Pages/Blog";
 import codePostsData from "./data/codePosts.json";
 import blogPostsData from "./data/blogPosts.json";
-import Header from "./Header";
+import Header from "./Components/Header";
 
 const App = () => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);

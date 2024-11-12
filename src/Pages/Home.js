@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import blogPostsData from "./data/blogPosts.json";
-import codePostsData from "./data/codePosts.json";
+import blogPostsData from "../data/blogPosts.json";
+import codePostsData from "../data/codePosts.json";
 import { Link } from "react-router-dom";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
@@ -20,8 +20,8 @@ const Home = () => {
 
 	return (
 		<main className="flex flex-col items-center min-h-screen">
-			<div className="w-full max-w-5xl mb-16 font-light">
-				<p className="text-3xl lg:text-5xl mt-2 lg:mt-4 text-outline">
+			<div className="w-full max-w-5xl mb-16 font-light mt-6 lg:mt-12">
+				<p className="text-3xl lg:text-5xl text-outline">
 					Welcome!
 				</p>
 				<p className="text-3xl lg:text-5xl mt-2 lg:mt-4 text-outline">
