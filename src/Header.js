@@ -9,13 +9,8 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 	const location = useLocation();
 
 	useEffect(() => {
-		if (isSidebarOpen) {
-			document.body.style.overflow = "hidden";
-			document.documentElement.style.overflow = "hidden";
-		} else {
-			document.body.style.overflow = "auto";
-			document.documentElement.style.overflow = "auto";
-		}
+		document.body.style.overflow = isSidebarOpen ? "hidden" : "auto";
+		document.documentElement.style.overflow = isSidebarOpen ? "hidden" : "auto";
 	}, [isSidebarOpen]);
 
 	return (
@@ -24,10 +19,10 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 				{location.pathname !== "/" ? (
 					<>
 						<button onClick={() => navigate(-1)} className="text-gray-700 focus:outline-none">
-							<ArrowLeftIcon className="w-6 h-6 text-gray-700" />
+							<ArrowLeftIcon className="w-6 h-6" />
 						</button>
 						<button onClick={() => navigate("/")} className="text-gray-700 focus:outline-none">
-							<HomeIcon className="w-6 h-6 text-gray-700" />
+							<HomeIcon className="w-6 h-6" />
 						</button>
 					</>
 				) : (
@@ -39,25 +34,26 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 				)}
 			</div>
 
-			<nav>
-				<ul className="flex items-center space-x-4 overflow-y-auto">
-					<li className="hidden md:block">
+			<nav className="flex items-center">
+				<ul className="hidden md:flex items-center space-x-4 overflow-y-auto">
+					<li>
 						<button onClick={() => openSidebar(false)} className="text-gray-700 focus:outline-none">
 							References
 						</button>
 					</li>
-					<li className="hidden md:block">
+					<li>
 						<button onClick={() => openSidebar(true)} className="text-gray-700 focus:outline-none">
 							Blog
 						</button>
 					</li>
 				</ul>
 
-				<div className="md:hidden">
-					<button onClick={() => openSidebar()} className="text-gray-700 p-2 rounded focus:outline-none">
-						<Bars3Icon className="w-6 h-6" />
-					</button>
-				</div>
+				<button
+					onClick={() => openSidebar()}
+					className="md:hidden text-gray-700 p-2 rounded focus:outline-none"
+				>
+					<Bars3Icon className="w-6 h-6" />
+				</button>
 			</nav>
 		</header>
 	);

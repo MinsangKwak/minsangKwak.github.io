@@ -17,33 +17,18 @@ const CodePost = ({ posts, isBlogView }) => {
 		</p>
 	));
 
-	// Blog View 스타일 적용 (MDN 스타일)
-	if (isBlogView) {
-		return (
-			<div className="max-w-3xl mx-auto p-4 sm:p-6 bg-white shadow-md rounded-lg">
-				<h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">
-					{post.title}
-				</h1>
+	return (
+		<div className="max-w-3xl mx-auto p-4 sm:p-6 bg-white shadow-md rounded-lg">
+			<h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">
+				{post.title}
+			</h1>
+			{isBlogView && (
 				<h2 className="text-lg sm:text-xl text-gray-600 mb-3 sm:mb-4">
 					{post.subtitle}
 				</h2>
-				<div className="text-sm sm:text-base text-gray-700 leading-relaxed">
-					{formattedContent}
-				</div>
-			</div>
-		);
-	}
-
-	// References View 스타일 유지
-	return (
-		<div className="max-w-3xl mx-auto p-4 sm:p-6 bg-white shadow-md rounded-lg">
-			<h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-4 sm:mb-6">
-				{post.title}
-			</h1>
-			<div className="mb-4 sm:mb-6 relative">
-				<pre className="text-sm sm:text-base text-gray-700 bg-gray-100 p-3 sm:p-4 rounded-lg overflow-auto">
-					{formattedContent}
-				</pre>
+			)}
+			<div className={`text-sm sm:text-base leading-relaxed ${isBlogView ? "text-gray-700" : "bg-gray-100 p-3 sm:p-4 rounded-lg overflow-auto"}`}>
+				{isBlogView ? formattedContent : <pre>{formattedContent}</pre>}
 			</div>
 		</div>
 	);

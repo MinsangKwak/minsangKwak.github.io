@@ -32,13 +32,12 @@ const App = () => {
 					} flex flex-col justify-between`}
 				>
 					<nav className="p-4 space-y-4 mt-16 flex-grow overflow-y-auto">
-
 						<h2 className="text-lg font-bold">Blog</h2>
 						<ul className="flex flex-col gap-1">
 							{blogPostsData.map((post) => (
 								<li key={post.id}>
 									<Link
-										to={`/post/${post.id}`}
+										to={`/blog/${post.id}`} // 블로그 포스트는 /blog 경로로 설정
 										onClick={() => {
 											setIsSidebarOpen(false);
 											setIsBlogView(true);
@@ -56,7 +55,7 @@ const App = () => {
 							{codePostsData.map((post) => (
 								<li key={post.id}>
 									<Link
-										to={`/post/${post.id}`}
+										to={`/reference/${post.id}`} // 레퍼런스 포스트는 /reference 경로로 설정
 										onClick={() => {
 											setIsSidebarOpen(false);
 											setIsBlogView(false);
@@ -83,13 +82,12 @@ const App = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/blog" element={<Blog posts={blogPostsData} />} />
 						<Route
-							path="/post/:postId"
-							element={
-								<CodePost
-									posts={isBlogView ? blogPostsData : codePostsData}
-									isBlogView={isBlogView}
-								/>
-							}
+							path="/blog/:postId"
+							element={<CodePost posts={blogPostsData} isBlogView={true} />} // blogPostsData 사용
+						/>
+						<Route
+							path="/reference/:postId"
+							element={<CodePost posts={codePostsData} isBlogView={false} />} // codePostsData 사용
 						/>
 					</Routes>
 				</div>
