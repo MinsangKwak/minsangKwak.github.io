@@ -5,12 +5,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { ConvexGeometry } from "three/examples/jsm/geometries/ConvexGeometry";
 import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils";
 
-const ConvexGeometryComponent = () => {
+const ConvexGeometryComponent = ({ width = 150, height = 150 }) => {
 	const mountRef = useRef(null);
-	const WIDTH = 150; // 설정할 너비
-	const HEIGHT = 150; // 설정할 높이
-	// const WIDTH = window.innerWidth;
-	// const HEIGHT = window.innerHeight;
 
 	useEffect(() => {
 		let camera, scene, renderer, group;
@@ -23,11 +19,11 @@ const ConvexGeometryComponent = () => {
 				alpha: true,
 			});
 			renderer.setPixelRatio(window.devicePixelRatio);
-			renderer.setSize(WIDTH, HEIGHT);
+			renderer.setSize(width, height);
 			mountRef.current.appendChild(renderer.domElement);
 
 			// Camera
-			camera = new THREE.PerspectiveCamera(40, WIDTH / HEIGHT, 1, 1000);
+			camera = new THREE.PerspectiveCamera(40, width / height, 1, 1000);
 			camera.position.set(15, 20, 30);
 			scene.add(camera);
 
@@ -56,8 +52,7 @@ const ConvexGeometryComponent = () => {
 
 			// Vertices
 			const vertices = [];
-			const positionAttribute =
-				dodecahedronGeometry.getAttribute("position");
+			const positionAttribute = dodecahedronGeometry.getAttribute("position");
 
 			for (let i = 0; i < positionAttribute.count; i++) {
 				const vertex = new THREE.Vector3();
@@ -71,9 +66,7 @@ const ConvexGeometryComponent = () => {
 				size: 0.5,
 			});
 
-			const pointsGeometry = new THREE.BufferGeometry().setFromPoints(
-				vertices
-			);
+			const pointsGeometry = new THREE.BufferGeometry().setFromPoints(vertices);
 			const points = new THREE.Points(pointsGeometry, pointsMaterial);
 			group.add(points);
 
@@ -101,9 +94,9 @@ const ConvexGeometryComponent = () => {
 		// Window resize handler
 		const onWindowResize = () => {
 			if (camera && renderer) {
-				camera.aspect = WIDTH / HEIGHT;
+				camera.aspect = width / height;
 				camera.updateProjectionMatrix();
-				renderer.setSize(WIDTH, HEIGHT);
+				renderer.setSize(width, height);
 			}
 		};
 
@@ -120,12 +113,12 @@ const ConvexGeometryComponent = () => {
 			renderer.dispose();
 			window.removeEventListener("resize", onWindowResize);
 		};
-	}, []);
+	}, [width, height]);
 
 	return (
 		<div
 			ref={mountRef}
-			style={{ width: `${WIDTH}px`, height: `${HEIGHT}px` }}
+			style={{ width: `${width}px`, height: `${height}px` }}
 		/>
 	);
 };
