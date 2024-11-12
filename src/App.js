@@ -32,25 +32,8 @@ const App = () => {
 					} flex flex-col justify-between`}
 				>
 					<nav className="p-4 space-y-4 mt-16 flex-grow overflow-y-auto">
-						<h2 className="text-lg font-bold">References</h2>
-						<ul className="flex flex-col gap-1">
-							{codePostsData.map((post) => (
-								<li key={post.id}>
-									<Link
-										to={`/post/${post.id}`}
-										onClick={() => {
-											setIsSidebarOpen(false);
-											setIsBlogView(false);
-										}}
-										className="block w-full text-left py-2 px-4 rounded hover:bg-gray-100"
-									>
-										{post.title}
-									</Link>
-								</li>
-							))}
-						</ul>
 
-						<h2 className="text-lg font-bold mt-6">Blog</h2>
+						<h2 className="text-lg font-bold">Blog</h2>
 						<ul className="flex flex-col gap-1">
 							{blogPostsData.map((post) => (
 								<li key={post.id}>
@@ -59,6 +42,24 @@ const App = () => {
 										onClick={() => {
 											setIsSidebarOpen(false);
 											setIsBlogView(true);
+										}}
+										className="block w-full text-left py-2 px-4 rounded hover:bg-gray-100"
+									>
+										{post.title}
+									</Link>
+								</li>
+							))}
+						</ul>
+						
+						<h2 className="text-lg font-bold mt-6">References</h2>
+						<ul className="flex flex-col gap-1">
+							{codePostsData.map((post) => (
+								<li key={post.id}>
+									<Link
+										to={`/post/${post.id}`}
+										onClick={() => {
+											setIsSidebarOpen(false);
+											setIsBlogView(false);
 										}}
 										className="block w-full text-left py-2 px-4 rounded hover:bg-gray-100"
 									>
