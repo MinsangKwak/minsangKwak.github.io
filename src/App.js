@@ -24,16 +24,14 @@ const App = () => {
 	return (
 		<Router>
 			<div className="flex flex-col min-h-screen bg-gray-100">
-				<Header openSidebar={openSidebar} />
+				<Header openSidebar={openSidebar} isSidebarOpen={isSidebarOpen} />
 
-				{/* 사이드바 */}
 				<aside
 					className={`fixed top-0 right-0 h-full bg-white text-black w-64 transform transition-transform duration-300 z-20 ${
 						isSidebarOpen ? "translate-x-0" : "translate-x-full"
 					} flex flex-col justify-between`}
 				>
-					<nav className="p-4 space-y-4 mt-16 flex-grow">
-						{/* References 섹션 */}
+					<nav className="p-4 space-y-4 mt-16 flex-grow overflow-y-auto">
 						<h2 className="text-lg font-bold">References</h2>
 						<ul className="flex flex-col gap-1">
 							{codePostsData.map((post) => (
@@ -42,7 +40,7 @@ const App = () => {
 										to={`/post/${post.id}`}
 										onClick={() => {
 											setIsSidebarOpen(false);
-											setIsBlogView(false); // References 모드로 설정
+											setIsBlogView(false);
 										}}
 										className="block w-full text-left py-2 px-4 rounded hover:bg-gray-100"
 									>
@@ -52,7 +50,6 @@ const App = () => {
 							))}
 						</ul>
 
-						{/* Blog 섹션 */}
 						<h2 className="text-lg font-bold mt-6">Blog</h2>
 						<ul className="flex flex-col gap-1">
 							{blogPostsData.map((post) => (
@@ -61,7 +58,7 @@ const App = () => {
 										to={`/post/${post.id}`}
 										onClick={() => {
 											setIsSidebarOpen(false);
-											setIsBlogView(true); // Blog 모드로 설정
+											setIsBlogView(true);
 										}}
 										className="block w-full text-left py-2 px-4 rounded hover:bg-gray-100"
 									>
@@ -73,7 +70,6 @@ const App = () => {
 					</nav>
 				</aside>
 
-				{/* 오버레이 */}
 				{isSidebarOpen && (
 					<div
 						className="fixed inset-0 bg-black opacity-50 z-10"
@@ -81,23 +77,15 @@ const App = () => {
 					></div>
 				)}
 
-				{/* 메인 콘텐츠 */}
 				<div className="flex-1 mt-16 p-6 max-w-full md:px-24">
 					<Routes>
 						<Route path="/" element={<Home />} />
-						<Route
-							path="/blog"
-							element={<Blog posts={blogPostsData} />}
-						/>
+						<Route path="/blog" element={<Blog posts={blogPostsData} />} />
 						<Route
 							path="/post/:postId"
 							element={
 								<CodePost
-									posts={
-										isBlogView
-											? blogPostsData
-											: codePostsData
-									}
+									posts={isBlogView ? blogPostsData : codePostsData}
 									isBlogView={isBlogView}
 								/>
 							}
