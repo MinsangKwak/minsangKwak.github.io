@@ -24,7 +24,7 @@ const CodePost = ({ posts, isBlogView }) => {
 				<h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">
 					{post.title}
 				</h1>
-				<h2 className="text-lg sm:text-2xl text-gray-600 mb-3 sm:mb-4">
+				<h2 className="text-lg sm:text-xl text-gray-600 mb-3 sm:mb-4">
 					{post.subtitle}
 				</h2>
 				<div className="text-sm sm:text-base text-gray-700 leading-relaxed">

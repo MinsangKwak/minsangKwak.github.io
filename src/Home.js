@@ -16,10 +16,8 @@ const Home = () => {
 	};
 
 	return (
-		<main className="flex flex-col items-center min-h-screen bg-gray-100 p-6">
-			{/* <div className="flex justify-center items-center mb-6"> */}
+		<main className="flex flex-col items-center min-h-screen bg-gray-100">
 			<ConvexGeometryComponent />
-			{/* </div> */}
 
 			<p className="text-gray-700 mt-4 text-center max-w-md">
 				안녕하세요! <br />
