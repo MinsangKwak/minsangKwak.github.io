@@ -30,9 +30,10 @@ const Home = () => {
 				</p>
 			</div>
 
-			<div className="w-full max-w-5xl flex flex-col md:flex-row md:space-x-8">
+			{/* <div className="w-full max-w-5xl flex flex-col md:flex-row md:space-x-8"> */}
+			<div className="w-full max-w-5xl flex flex-col md:flex-row gap-y-8 md:gap-x-8">
 				{/* Blog Section */}
-				<section className="w-full md:w-1/2">
+				<section className="w-full md:w-1/3">
 					<div className="flex items-center justify-between mb-4">
 						<h2 className="text-xl font-semibold text-outline">
 							Blog
@@ -42,7 +43,7 @@ const Home = () => {
 								onClick={loadMoreBlogPosts}
 								className="text-outline flex items-center text-xs text-white bg-white/20 backdrop-blur-md px-2 py-1 rounded border border-white/20 hover:bg-white/30 shadow-md"
 							>
-								더보기
+								View
 								<PlusIcon className="w-3 h-3 ml-1 text-black font-bold" />
 							</button>
 						)}
@@ -75,7 +76,7 @@ const Home = () => {
 				</section>
 
 				{/* References Section */}
-				<section className="w-full md:w-1/2 mt-8 md:mt-0">
+				<section className="w-full md:w-1/3 mt-8 md:mt-0">
 					<div className="flex items-center justify-between mb-4">
 						<h2 className="text-xl font-semibold text-outline">
 							References
@@ -86,7 +87,7 @@ const Home = () => {
 								onClick={loadMoreReferencePosts}
 								className="flex items-center text-xs text-white bg-white/20 backdrop-blur-md px-2 py-1 rounded border border-white/20 hover:bg-white/30 shadow-md"
 							>
-								더보기
+								View
 								<PlusIcon className="w-3 h-3 ml-1" />
 							</button>
 						)}
@@ -115,6 +116,43 @@ const Home = () => {
 									)}
 								</li>
 							))}
+					</ul>
+				</section>
+
+				{/* Update Section */}
+				<section className="w-full md:w-1/3 mt-8 md:mt-0">
+					<div className="flex items-center justify-between mb-4">
+						<h2 className="text-xl font-semibold text-outline">
+							Update soon...
+						</h2>
+					</div>
+					<ul className="space-y-3">
+						<li
+							className="bg-white/20 backdrop-blur-md p-4 rounded-lg shadow-lg border border-white/30 relative"
+						>
+							<span className="block pr-[50px] text-gray-900 font-medium hover:underline text-outline">
+								패치노트 게시판
+							</span>
+							<p className="text-gray-500 text-sm mt-1">
+								업데이트 내역을 기록하는 패치노트 게시판이 생성될 예정입니다.
+							</p>
+							<span className="absolute top-2 right-2 bg-blue-500/80 text-white text-xs font-light px-2 py-1 rounded backdrop-blur-md shadow-md border border-white/20">
+								2024.12
+							</span>
+						</li>
+						<li
+							className="bg-white/20 backdrop-blur-md p-4 rounded-lg shadow-lg border border-white/30 relative"
+						>
+							<span className="block pr-[50px] text-gray-900 font-medium hover:underline text-outline">
+								메뉴별 depth추가
+							</span>
+							<p className="text-gray-500 text-sm mt-1">
+								Blog내부의 글 형태에 따른 소제목별 분류가 생성될 예정입니다.
+							</p>
+							<span className="absolute top-2 right-2 bg-blue-500/80 text-white text-xs font-light px-2 py-1 rounded backdrop-blur-md shadow-md border border-white/20">
+								2024.12
+							</span>
+						</li>
 					</ul>
 				</section>
 			</div>

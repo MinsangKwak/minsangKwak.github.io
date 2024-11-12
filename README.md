@@ -28,24 +28,26 @@ MDN 스타일을 참고한 디자인으로, 학습과 정보를 공유할 수 �
 
 ```plaintext
 .
-├── .github              # GitHub 설정 파일
-├── build                # 프로덕션 빌드 파일
-├── node_modules         # Node.js 의존성
-├── public               # index.html 등 퍼블릭 파일
-├── src                  # 소스 파일
+├── .github                   # GitHub 설정 파일
+├── build                     # 프로덕션 빌드 파일
+├── node_modules              # Node.js 의존성
+├── public                    # index.html 등 퍼블릭 파일
+├── src                       # 소스 파일
 │   ├── data
-│   │   ├── blogPosts.json   # Blog 탭 포스트 데이터 파일
-│   │   └── codePosts.json   # References 탭 포스트 데이터 파일
-│   ├── App.js           # 메인 컴포넌트 (전체 레이아웃 및 라우팅)
-│   ├── Blog.js          # Blog 탭에서 포스트 목록과 상세 페이지를 표시하는 컴포넌트
-│   ├── CodePost.js      # 포스트 상세 페이지 컴포넌트 (포스트 내용 및 코드 미리보기)
-│   ├── ConvexGeometry.js # Three.js 3D 그래픽 관련 파일
-│   ├── Header.js        # 헤더 컴포넌트 (네비게이션 메뉴 포함)
-│   ├── Home.js          # 홈 화면 컴포넌트
-│   ├── index.css        # Tailwind CSS 설정 파일
-│   ├── index.js         # 진입 파일
-│   ├── PostDetail.js    # 포스트 상세 페이지 컴포넌트
-└── README.md            # 프로젝트 설명서
+│   │   ├── blogPosts.json    # Blog 탭 포스트 데이터 파일
+│   │   └── codePosts.json    # References 탭 포스트 데이터 파일
+│   ├── Components
+│   │   ├── ConvexGeometry.js # Three.js 3D 그래픽 관련 파일
+│   │   └── Header.js         # 헤더 컴포넌트 (네비게이션 메뉴 포함)
+│   ├── Pages
+│   │   ├── Blog.js           # Blog 탭에서 포스트 목록과 상세 페이지를 표시하는 컴포넌트
+│   │   ├── CodePost.js       # 포스트 상세 페이지 컴포넌트 (포스트 내용 및 코드 미리보기)
+│   │   ├── PostDetail.js     # 포스트 상세 페이지 컴포넌트
+│   │   └── Home.js           # 홈 화면 컴포넌트
+│   ├── App.js                # 메인 컴포넌트 (전체 레이아웃 및 라우팅)
+│   ├── index.js              # 진입 파일
+│   ├── style.css             # Tailwind CSS 설정 파일
+└── README.md                 # 프로젝트 설명서
 
 ```
 
