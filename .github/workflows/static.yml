@@ -14,12 +14,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
-              uses: actions/checkout@v3
+              uses: actions/checkout@v3  # 최신 버전 사용
 
             - name: Set up Node.js
               uses: actions/setup-node@v3
               with:
-                  node-version: "20"  # Node.js 20으로 업그레이드
+                  node-version: "20"  # Node.js 20 명시적으로 설정
 
             - name: Install dependencies
               run: npm install
@@ -28,7 +28,7 @@ jobs:
               run: npm run build
 
             - name: Deploy to gh-pages
-              uses: peaceiris/actions-gh-pages@v4  # v4로 업그레이드
+              uses: peaceiris/actions-gh-pages@v4  # 최신 버전으로 업그레이드
               with:
                   github_token: ${{ secrets.GITHUB_TOKEN }}
                   publish_dir: ./build
