@@ -77,40 +77,10 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 				</div>
 
 				<nav className="flex items-center">
-					{/* <ul className="hidden md:flex items-center space-x-4 overflow-y-auto">
-						<li>
-							<button
-								onClick={openLoginModal}
-								className="text-gray-700 focus:outline-none text-outline"
-							>
-								Login
-							</button>
-						</li>
-						<li>
-							<button
-								onClick={handleEmailClick}
-								className="text-gray-700 focus:outline-none text-outline"
-							>
-								Contact
-							</button>
-						</li>
-						<li>
-                            <button onClick={() => openSidebar(true)} className="text-gray-700 focus:outline-none text-outline">
-                                Blog
-                            </button>
-                        </li>
-                        <li>
-                            <button onClick={() => openSidebar(false)} className="text-gray-700 focus:outline-none text-outline">
-                                References
-                            </button>
-                        </li>
-					</ul> */}
-
 					<button
 						onClick={openLoginModal}
 						className="text-gray-700 p-2 rounded focus:outline-none text-outline"
 					>
-						<span className="md:hidden">Login</span>
 						<UserIcon className="w-6 h-6" />
 					</button>
 
@@ -118,7 +88,6 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 						onClick={handleEmailClick}
 						className="text-gray-700 p-2 rounded focus:outline-none text-outline"
 					>
-						<span className="md:hidden">Contact</span>
 						<EnvelopeIcon className="w-6 h-6" />
 					</button>
 
