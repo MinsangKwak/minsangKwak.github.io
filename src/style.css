@@ -195,3 +195,14 @@ body {
 .animate-slide-up {
   animation: slideUp 0.5s ease forwards;
 }
+
+/* 사이드바 애니메이션 */
+.translate-x-full {
+	transform: translateX(100%);
+	transition: transform 0.3s ease;
+}
+
+.translate-x-0 {
+	transform: translateX(0);
+	transition: transform 0.3s ease;
+}
