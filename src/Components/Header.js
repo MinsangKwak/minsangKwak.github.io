@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { Bars3Icon, HomeIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
+import { Bars3Icon, HomeIcon, EnvelopeIcon } from "@heroicons/react/24/outline";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 
 const Header = ({ openSidebar, isSidebarOpen }) => {
@@ -20,6 +20,11 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 		setTimeout(() => setIsToastVisible(false), 5000);
 	};
 
+	const handleHomeClick = () => {
+		openSidebar(false); // 사이드바 닫기
+		navigate("/"); // Home 페이지로 이동
+	};
+
 	return (
 		<>
 			<header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-white/20 backdrop-blur-lg shadow-md h-16 px-4 border-b border-white/20">
@@ -33,7 +38,7 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 								<ArrowLeftIcon className="w-6 h-6" />
 							</button>
 							<button
-								onClick={() => navigate("/")}
+								onClick={handleHomeClick} // Home 버튼 클릭 시
 								className="text-gray-700 focus:outline-none"
 							>
 								<HomeIcon className="w-6 h-6" />
@@ -43,6 +48,7 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 						<h1>
 							<Link
 								to="/"
+								onClick={handleHomeClick} // 로고 클릭 시도 동일하게 처리
 								className="text-gray-900 font-bold text-outline"
 							>
 								CODE DIARY

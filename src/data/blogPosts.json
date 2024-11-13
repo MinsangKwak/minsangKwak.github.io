@@ -46,7 +46,7 @@
     },
     {
         "id": 6,
-        "slug": "how-it-works-internet",
+        "slug": "internet-basic-1",
         "title": "인터넷은 어떻게 작동할까?",
         "subtitle": "프론트엔드 개발자를 위한 인터넷 기초",
         "excerpt": "인터넷 작동 원리를 이해하면 웹 애플리케이션이 사용자에게 전달되는 과정을 이해할 수 있습니다.",
@@ -55,7 +55,7 @@
     },
     {
         "id": 7,
-        "slug": "what-is-http",
+        "slug": "internet-basic-2",
         "title": "HTTP란 무엇일까?",
         "subtitle": "웹 통신의 기초 HTTP 프로토콜",
         "excerpt": "HTTP는 클라이언트와 서버 간의 통신을 가능하게 하는 중요한 프로토콜입니다.",
@@ -64,7 +64,7 @@
     },
     {
         "id": 8,
-        "slug": "what-is-domain-name",
+        "slug": "internet-basic-3",
         "title": "도메인 네임이란?",
         "subtitle": "쉽게 기억할 수 있는 웹 주소, 도메인 네임",
         "excerpt": "도메인 네임은 IP 주소를 쉽게 기억할 수 있도록 만든 웹 주소입니다.",
@@ -73,7 +73,7 @@
     },
     {
         "id": 9,
-        "slug": "what-is-hosting",
+        "slug": "internet-basic-4",
         "title": "호스팅이란?",
         "subtitle": "웹사이트를 위한 서버 공간, 호스팅",
         "excerpt": "호스팅은 웹사이트 파일과 데이터를 저장하는 서버 공간을 제공하는 서비스입니다.",
@@ -82,7 +82,7 @@
     },
     {
         "id": 10,
-        "slug": "what-is-dns-and-how-it-works",
+        "slug": "internet-basic-5",
         "title": "DNS와 작동 방식",
         "subtitle": "도메인 네임을 IP 주소로 변환해 주는 DNS",
         "excerpt": "DNS는 도메인 네임을 서버의 IP 주소로 변환해 주는 시스템입니다.",
@@ -91,7 +91,7 @@
     },
     {
         "id": 11,
-        "slug": "how-browser-works",
+        "slug": "internet-basic-6",
         "title": "브라우저와 작동 방식",
         "subtitle": "브라우저가 코드에서 화면으로 변환하는 과정",
         "excerpt": "브라우저는 HTML, CSS, JavaScript와 같은 코드가 화면에 표현되도록 도와주는 역할을 합니다.",
@@ -100,7 +100,7 @@
     },
     {
         "id": 12,
-        "slug": "how-it-works-internet-2",
+        "slug": "internet-basic-7",
         "title": "인터넷 원리와 최적화의 중요성",
         "subtitle": "데이터 흐름 이해와 최적화가 가져오는 이점",
         "excerpt": "인터넷 원리를 이해하면 데이터 흐름과 최적화의 중요성을 깊이 알 수 있습니다.",
