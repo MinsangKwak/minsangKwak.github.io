@@ -134,19 +134,6 @@ const Home = () => {
 								2024.12
 							</span>
 						</li>
-						<li
-							className="bg-white/20 backdrop-blur-md p-4 rounded-lg shadow-lg border border-white/30 relative"
-						>
-							<span className="block pr-[50px] text-gray-900 font-medium hover:underline text-outline">
-								메뉴별 depth추가
-							</span>
-							<p className="text-gray-500 text-sm mt-1 line-clamp">
-								Blog내부의 글 형태에 따른 소제목별 분류가 생성될 예정입니다.
-							</p>
-							<span className="absolute top-2 right-2 bg-blue-500/80 text-white text-xs font-light px-2 py-1 rounded backdrop-blur-md shadow-md border border-white/20">
-								2024.12
-							</span>
-						</li>
 					</ul>
 				</section>
 			</div>
