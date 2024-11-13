@@ -1,11 +1,10 @@
-// src/ConvexGeometry.js
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { ConvexGeometry } from "three/examples/jsm/geometries/ConvexGeometry";
 import { mergeVertices } from "three/examples/jsm/utils/BufferGeometryUtils";
 
-const ConvexGeometryComponent = ({ width = 150, height = 150 }) => {
+const ConvexGeometryComponent = ({ width = 200, height = 200 }) => {
 	const mountRef = useRef(null);
 
 	useEffect(() => {
@@ -70,12 +69,16 @@ const ConvexGeometryComponent = ({ width = 150, height = 150 }) => {
 			const points = new THREE.Points(pointsGeometry, pointsMaterial);
 			group.add(points);
 
-			// Convex Hull
-			const meshMaterial = new THREE.MeshLambertMaterial({
+			// Convex Hull with Glassmorphism effect
+			const meshMaterial = new THREE.MeshPhysicalMaterial({
 				color: 0xffffff,
-				opacity: 0.5,
-				side: THREE.DoubleSide,
+				opacity: 0.2, // Semi-transparent for glass effect
 				transparent: true,
+				reflectivity: 0.6,
+				roughness: 0.1,
+				metalness: 0.3,
+				clearcoat: 1,
+				clearcoatRoughness: 0.1,
 			});
 
 			const meshGeometry = new ConvexGeometry(vertices);
@@ -118,7 +121,13 @@ const ConvexGeometryComponent = ({ width = 150, height = 150 }) => {
 	return (
 		<div
 			ref={mountRef}
-			style={{ width: `${width}px`, height: `${height}px` }}
+			style={{
+				width: `${width}px`,
+				height: `${height}px`,
+				// backdropFilter: "blur(10px)", // Glassmorphism backdrop blur
+				// backgroundColor: "rgba(255, 255, 255, 0.1)", // Transparent background color
+				borderRadius: "10px", // Rounded corners for style
+			}}
 		/>
 	);
 };

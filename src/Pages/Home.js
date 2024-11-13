@@ -20,8 +20,10 @@ const Home = () => {
 			<div className="w-full max-w-5xl mb-16 font-light mt-6 lg:mt-12">
 				<p className="text-3xl lg:text-5xl text-outline">Welcome!</p>
 				<p className="text-3xl lg:text-5xl mt-2 lg:mt-4 text-outline">
-					This blog is a personal project created after work hours to
-					share insights and resources related to development.
+					This blog is a personal side project
+				</p>
+				<p className="text-3xl lg:text-5xl mt-2 lg:mt-4 text-outline">
+					where I share development insights and resources.
 				</p>
 			</div>
 
