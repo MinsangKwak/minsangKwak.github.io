@@ -30,14 +30,12 @@ const App = () => {
 				/>
 
 				<aside
-					className={`fixed top-0 right-0 h-full bg-white/20 backdrop-blur-md text-gray-200 w-64 transform transition-transform duration-300 z-20 shadow-lg border border-white/10 ${
+					className={`fixed top-0 right-0 h-full bg-white/20 backdrop-blur-md text-black w-[80%] transform transition-transform duration-300 z-20 shadow-lg border border-white/10 ${
 						isSidebarOpen ? "translate-x-0" : "translate-x-full"
 					} flex flex-col justify-between rounded-l-lg`}
 				>
 					<nav className="p-4 space-y-4 mt-16 flex-grow overflow-y-auto">
-						<h2 className="text-lg font-bold text-white/90">
-							Blog
-						</h2>
+						<h2 className="text-lg font-bold text-black">Blog</h2>
 						<ul className="flex flex-col gap-1">
 							{blogPostsData.map((post) => (
 								<li key={post.id}>
@@ -47,7 +45,7 @@ const App = () => {
 											setIsSidebarOpen(false);
 											setIsBlogView(true);
 										}}
-										className="block w-full text-left py-2 px-4 rounded hover:bg-white/10 text-white/80 hover:text-white"
+										className="block w-full text-left py-2 px-4 rounded hover:bg-white/30 text-black"
 									>
 										{post.title}
 									</Link>
@@ -55,7 +53,7 @@ const App = () => {
 							))}
 						</ul>
 
-						<h2 className="text-lg font-bold mt-6 text-white/90">
+						<h2 className="text-lg font-bold mt-6 text-black">
 							References
 						</h2>
 						<ul className="flex flex-col gap-1">
@@ -67,7 +65,7 @@ const App = () => {
 											setIsSidebarOpen(false);
 											setIsBlogView(false);
 										}}
-										className="block w-full text-left py-2 px-4 rounded hover:bg-white/10 text-white/80 hover:text-white"
+										className="block w-full text-left py-2 px-4 rounded hover:bg-white/30 text-black"
 									>
 										{post.title}
 									</Link>
