@@ -104,7 +104,7 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 						</p>
 						<a
 							href="mailto:kmsdevwork@gmail.com"
-							className="ml-4 px-3 py-2 bg-gray-800/80 text-white text-xs sm:text-sm rounded hover:bg-gray-700/80 text-outline"
+							className="text-outline flex items-center text-xs text-white bg-white/20 backdrop-blur-md px-2 py-1 rounded border border-white/20 hover:bg-white/30 shadow-md"
 							onClick={() => setIsToastVisible(false)}
 						>
 							메일 발송하기

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import CodePost from "./Pages/CodePost";
 import Home from "./Pages/Home";
 import Blog from "./Pages/Blog";
+import Wave from "./Components/Wave";
 import codePostsData from "./data/codePosts.json";
 import blogPostsData from "./data/blogPosts.json";
 import Header from "./Components/Header";
@@ -83,7 +84,7 @@ const App = () => {
 					></div>
 				)}
 
-				<div className="flex-1 mt-16 p-6 max-w-full md:px-24 bg-white/20 backdrop-blur-lg border border-white/10 shadow-md rounded-lg text-gray-200">
+				<div className="relative z-[2] flex-1 mt-16 p-6 max-w-full md:px-24 bg-white/20 border border-white/10 shadow-md rounded-lg text-gray-200">
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route
@@ -110,6 +111,8 @@ const App = () => {
 						/>
 					</Routes>
 				</div>
+
+				<Wave />
 			</div>
 		</Router>
 	);

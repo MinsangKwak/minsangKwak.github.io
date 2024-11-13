@@ -15,7 +15,7 @@ body {
 }
 
 .bg-gradient-rainbow {
-	background: linear-gradient(
+	/* background: linear-gradient(
 		135deg,
 		rgba(255, 0, 150, 0.5),
 		rgba(255, 255, 0, 0.5),
@@ -24,7 +24,8 @@ body {
 		rgba(255, 0, 150, 0.5)
 	);
 	background-size: 200% 200%;
-	animation: gradientAnimation 10s ease infinite;
+	animation: gradientAnimation 10s ease infinite; */
+    background-color:white;
 }
 
 @keyframes gradientAnimation {
@@ -62,3 +63,70 @@ body {
 .animate-fade-in-out {
 	animation: fadeInOut 5s ease forwards;
 }
+
+
+/* WaveAnimation.css */
+.wave-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; /* 전체 높이를 200px로 설정 */
+    overflow: hidden;
+    z-index: 1;
+    
+  }
+  
+  .wave {
+    position: absolute;
+    left:-50%;
+    width: 300%; /* 파도의 너비를 화면 너비의 두 배로 설정 */
+    height: 200px; /* 파도 높이를 200px로 맞추기 */
+    background: rgba(135, 206, 235, 0.4);
+    backdrop-filter: blur(10px); /* Glassmorphism 효과 */
+    opacity: 0.8;
+    border-radius: 50%; /* 반구 형태 */
+    bottom: 0; /* 위치 고정 */
+    animation: waveAnimation 5s ease-in-out infinite;
+  }
+  
+  /* 각 파도의 위치와 색상, 딜레이 설정 */
+  .wave1 {
+    background: linear-gradient(120deg, rgba(135, 206, 235, 0.5), rgba(255, 182, 193, 0.5));
+    bottom: -30px;
+    animation-delay: 0s;
+  }
+  
+  .wave2 {
+    background: linear-gradient(120deg, rgba(135, 206, 250, 0.4), rgba(255, 192, 203, 0.4));
+    bottom: -60px;
+    animation-delay: 1s;
+  }
+  
+  .wave3 {
+    background: linear-gradient(120deg, rgba(173, 216, 230, 0.3), rgba(238, 130, 238, 0.3));
+    bottom: -90px;
+    animation-delay: 2s;
+  }
+  
+  .wave4 {
+    background: linear-gradient(120deg, rgba(224, 255, 255, 0.2), rgba(240, 128, 128, 0.2));
+    bottom: -120px;
+    animation-delay: 3s;
+  }
+  
+  .wave5 {
+    background: linear-gradient(120deg, rgba(255, 228, 225, 0.3), rgba(255, 228, 181, 0.3));
+    bottom: -150px;
+    animation-delay: 4s;
+  }
+  
+  @keyframes waveAnimation {
+    0%, 100% {
+      transform: translateY(0); /* 제자리에서 시작 */
+    }
+    50% {
+      transform: translateY(15px); /* 위아래로 꿀렁거림 */
+    }
+  }
+  
