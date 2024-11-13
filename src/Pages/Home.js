@@ -17,13 +17,17 @@ const Home = () => {
 
 	return (
 		<main className="flex flex-col items-center min-h-screen">
-			<div className="w-full max-w-5xl mb-16 font-light mt-6 lg:mt-12">
+			<div className="w-full max-w-5xl font-light mt-6 lg:mt-20 mb-6 lg:mb-20">
 				<p className="text-3xl lg:text-5xl text-outline">Welcome!</p>
-				<p className="text-3xl lg:text-5xl mt-2 lg:mt-4 text-outline">
-					This blog is a personal side project
+				<p className="text-3xl lg:text-5xl mt-2 lg:mt-16 text-outline">
+					This blog is my personal side project,{" "}
+					<br className="hidden sm:block" />
+					focused mainly on frontend development.
 				</p>
-				<p className="text-3xl lg:text-5xl mt-2 lg:mt-4 text-outline">
-					where I share development insights and resources.
+				<p className="text-3xl lg:text-5xl mt-2 lg:mt-12 text-outline">
+					If you have any questions or want to know more,{" "}
+					<br className="hidden sm:block" />
+					please feel free to reach out anytime.
 				</p>
 			</div>
 
@@ -123,14 +127,13 @@ const Home = () => {
 						</h2>
 					</div>
 					<ul className="space-y-3">
-						<li
-							className="bg-white/20 backdrop-blur-md p-4 rounded-lg shadow-lg border border-white/30 relative"
-						>
+						<li className="bg-white/20 backdrop-blur-md p-4 rounded-lg shadow-lg border border-white/30 relative">
 							<span className="block pr-[50px] text-gray-900 font-medium hover:underline text-outline">
 								패치노트 게시판
 							</span>
 							<p className="text-gray-500 text-sm mt-1 line-clamp">
-								업데이트 내역을 기록하는 패치노트 게시판이 생성될 예정입니다.
+								업데이트 내역을 기록하는 패치노트 게시판이
+								생성될 예정입니다.
 							</p>
 							<span className="absolute top-2 right-2 bg-blue-500/80 text-white text-xs font-light px-2 py-1 rounded backdrop-blur-md shadow-md border border-white/20">
 								2024.12
