@@ -14,18 +14,25 @@ body {
 		-1px -1px 2px rgba(255, 255, 255, 0.8);
 }
 
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .bg-gradient-rainbow {
-	/* background: linear-gradient(
+	background: linear-gradient(
 		135deg,
-		rgba(255, 0, 150, 0.5),
-		rgba(255, 255, 0, 0.5),
-		rgba(0, 255, 150, 0.5),
-		rgba(0, 150, 255, 0.5),
-		rgba(255, 0, 150, 0.5)
+		rgba(255, 0, 150, 0.2), /* 투명도 줄임 */
+		rgba(255, 255, 0, 0.2), /* 투명도 줄임 */
+		rgba(0, 255, 150, 0.2), /* 투명도 줄임 */
+		rgba(0, 150, 255, 0.2), /* 투명도 줄임 */
+		rgba(255, 0, 150, 0.2)  /* 투명도 줄임 */
 	);
 	background-size: 200% 200%;
-	animation: gradientAnimation 10s ease infinite; */
-    background-color:white;
+	animation: gradientAnimation 10s ease infinite;
 }
 
 @keyframes gradientAnimation {

@@ -12,25 +12,19 @@ const Home = () => {
 	const loadMoreReferencePosts = () =>
 		setVisibleReferencePosts((prev) => prev + 3);
 
-	const truncateText = (text, maxLength) =>
-		text.length > maxLength ? `${text.slice(0, maxLength)}...` : text;
-
 	const sortedBlogPosts = [...blogPostsData].sort((a, b) => b.id - a.id);
 	const sortedReferencePosts = [...codePostsData].sort((a, b) => b.id - a.id);
 
 	return (
 		<main className="flex flex-col items-center min-h-screen">
 			<div className="w-full max-w-5xl mb-16 font-light mt-6 lg:mt-12">
-				<p className="text-3xl lg:text-5xl text-outline">
-					Welcome!
-				</p>
+				<p className="text-3xl lg:text-5xl text-outline">Welcome!</p>
 				<p className="text-3xl lg:text-5xl mt-2 lg:mt-4 text-outline">
 					This blog is a personal project created after work hours to
 					share insights and resources related to development.
 				</p>
 			</div>
 
-			{/* <div className="w-full max-w-5xl flex flex-col md:flex-row md:space-x-8"> */}
 			<div className="w-full max-w-5xl flex flex-col md:flex-row gap-y-8 md:gap-x-8">
 				{/* Blog Section */}
 				<section className="w-full md:w-1/3">
@@ -62,8 +56,8 @@ const Home = () => {
 									>
 										{post.title}
 									</Link>
-									<p className="text-gray-500 text-sm mt-1">
-										{truncateText(post.excerpt, 30)}
+									<p className="text-gray-500 text-sm mt-1 line-clamp">
+										{post.excerpt}
 									</p>
 									{index === 0 && (
 										<span className="absolute top-2 right-2 bg-blue-500/80 text-white text-xs font-light px-2 py-1 rounded backdrop-blur-md shadow-md border border-white/20">
@@ -106,8 +100,8 @@ const Home = () => {
 									>
 										{post.title}
 									</Link>
-									<p className="text-gray-500 text-sm mt-1">
-										{truncateText(post.memo, 30)}
+									<p className="text-gray-500 text-sm mt-1 line-clamp">
+										{post.memo}
 									</p>
 									{index === 0 && (
 										<span className="absolute top-2 right-2 bg-blue-500/80 text-white text-xs font-light px-2 py-1 rounded backdrop-blur-md shadow-md border border-white/20">
@@ -133,7 +127,7 @@ const Home = () => {
 							<span className="block pr-[50px] text-gray-900 font-medium hover:underline text-outline">
 								패치노트 게시판
 							</span>
-							<p className="text-gray-500 text-sm mt-1">
+							<p className="text-gray-500 text-sm mt-1 line-clamp">
 								업데이트 내역을 기록하는 패치노트 게시판이 생성될 예정입니다.
 							</p>
 							<span className="absolute top-2 right-2 bg-blue-500/80 text-white text-xs font-light px-2 py-1 rounded backdrop-blur-md shadow-md border border-white/20">
@@ -146,7 +140,7 @@ const Home = () => {
 							<span className="block pr-[50px] text-gray-900 font-medium hover:underline text-outline">
 								메뉴별 depth추가
 							</span>
-							<p className="text-gray-500 text-sm mt-1">
+							<p className="text-gray-500 text-sm mt-1 line-clamp">
 								Blog내부의 글 형태에 따른 소제목별 분류가 생성될 예정입니다.
 							</p>
 							<span className="absolute top-2 right-2 bg-blue-500/80 text-white text-xs font-light px-2 py-1 rounded backdrop-blur-md shadow-md border border-white/20">

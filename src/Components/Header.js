@@ -100,14 +100,14 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 				<div className="fixed bottom-4 w-full px-6 z-50">
 					<div className="max-w-3xl mx-auto shadow-lg rounded-lg p-4 animate-fade-in-out bg-white/30 backdrop-blur-md border border-white/20 flex justify-between items-center">
 						<p className="text-gray-800 text-sm sm:text-base text-outline">
-							문의사항이 있으시다면 편하게 연락주세요~!
+							요청사항 건의하기
 						</p>
 						<a
 							href="mailto:kmsdevwork@gmail.com"
 							className="text-outline flex items-center text-xs text-white bg-white/20 backdrop-blur-md px-2 py-1 rounded border border-white/20 hover:bg-white/30 shadow-md"
 							onClick={() => setIsToastVisible(false)}
 						>
-							메일 발송하기
+							<EnvelopeIcon className="w-6 h-6" />
 						</a>
 					</div>
 				</div>
