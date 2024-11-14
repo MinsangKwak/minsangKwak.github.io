@@ -1,5 +1,4 @@
-// Components/Header.js
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
 	Bars3Icon,
@@ -8,47 +7,33 @@ import {
 	ArrowLeftIcon,
 	UserIcon,
 } from "@heroicons/react/24/outline";
-import Toast from "./Toast";
-import LoginModal from "./LoginModal";
+import Category from "./Category";
 
-const Header = ({ openSidebar, isSidebarOpen }) => {
+const Header = ({
+	openSidebar,
+	isSidebarOpen,
+	openToast,
+	openLoginModal,
+	categorizedBlogPosts,
+	categorizedReferencePosts,
+	activeCategory,
+	toggleCategory,
+}) => {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const [isToastVisible, setIsToastVisible] = useState(false);
-	const [isLoginModalVisible, setIsLoginModalVisible] = useState(false);
-	const [isFadingOut, setIsFadingOut] = useState(false);
 
 	useEffect(() => {
-		document.body.style.overflow =
-			isSidebarOpen || isLoginModalVisible ? "hidden" : "auto";
-		document.documentElement.style.overflow =
-			isSidebarOpen || isLoginModalVisible ? "hidden" : "auto";
-	}, [isSidebarOpen, isLoginModalVisible]);
-
-	const handleEmailClick = () => {
-		setIsToastVisible(true);
-		setTimeout(() => setIsToastVisible(false), 5000);
-	};
+		document.body.style.overflow = isSidebarOpen ? "hidden" : "auto";
+		document.documentElement.style.overflow = isSidebarOpen ? "hidden" : "auto";
+	}, [isSidebarOpen]);
 
 	const handleHomeClick = () => {
-		openSidebar(false);
+		openSidebar();
 		navigate("/");
 	};
 
-	const openLoginModal = () => {
-		setIsFadingOut(false);
-		setIsLoginModalVisible(true);
-	};
-
-	const closeLoginModal = () => {
-		setIsFadingOut(true);
-		setTimeout(() => setIsLoginModalVisible(false), 500);
-	};
-
-	// 공통 버튼 스타일
 	const buttonStyles = "text-gray-700 p-2 rounded focus:outline-none text-outline";
 
-	// 버튼 생성 함수
 	const createButton = (onClick, IconComponent, ariaLabel) => (
 		<button onClick={onClick} className={buttonStyles} aria-label={ariaLabel}>
 			<IconComponent className="w-6 h-6" />
@@ -65,7 +50,7 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 							{createButton(handleHomeClick, HomeIcon, "Home")}
 						</div>
 					) : (
-						<h1 className="relative z-50">
+						<h1>
 							<Link
 								to="/"
 								onClick={() => openSidebar(false)}
@@ -79,16 +64,45 @@ const Header = ({ openSidebar, isSidebarOpen }) => {
 
 				<nav className="flex items-center">
 					{createButton(openLoginModal, UserIcon, "Login")}
-					{createButton(handleEmailClick, EnvelopeIcon, "Email")}
+					{createButton(openToast, EnvelopeIcon, "Email")}
 					{createButton(openSidebar, Bars3Icon, "Menu")}
 				</nav>
 			</header>
 
-			{/* Toast Notification */}
-			<Toast isVisible={isToastVisible} onClose={() => setIsToastVisible(false)} />
+			{/* Sidebar */}
+			<aside
+				className={`fixed top-0 right-0 h-full bg-white/20 backdrop-blur-md text-black transition-transform duration-300 z-20 shadow-lg border border-white/10 rounded-l-lg ${
+					isSidebarOpen ? "translate-x-0 w-[80%] md:w-[240px]" : "translate-x-full"
+				}`}
+			>
+				<nav className="p-4 mt-16 overflow-y-auto">
+					<h2 className="text-lg font-bold">Blog</h2>
+					{Object.keys(categorizedBlogPosts).map((category) => (
+						<Category
+							key={category}
+							category={category}
+							posts={categorizedBlogPosts[category]}
+							basePath="blog" // 블로그 경로 지정
+							isActive={activeCategory === category}
+							onClick={toggleCategory}
+							onPostClick={() => openSidebar(false)}
+						/>
+					))}
 
-			{/* Login Modal */}
-			<LoginModal isVisible={isLoginModalVisible} onClose={closeLoginModal} isFadingOut={isFadingOut} />
+					<h2 className="text-lg font-bold mt-6">References</h2>
+					{Object.keys(categorizedReferencePosts).map((category) => (
+						<Category
+							key={category}
+							category={category}
+							posts={categorizedReferencePosts[category]}
+							basePath="reference" // 레퍼런스 경로 지정
+							isActive={activeCategory === category}
+							onClick={toggleCategory}
+							onPostClick={() => openSidebar(false)}
+						/>
+					))}
+				</nav>
+			</aside>
 		</>
 	);
 };

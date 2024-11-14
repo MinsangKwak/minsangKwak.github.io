@@ -1,12 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 
 const PageBlog = ({ posts = [] }) => {
 	const [selectedPost, setSelectedPost] = useState(null);
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+	const { postId } = useParams();
 
 	useEffect(() => {
-		if (posts.length > 0) setSelectedPost(posts[0]);
-	}, [posts]);
+		if (postId) {
+			const foundPost = posts.find((post) => post.id === parseInt(postId));
+			setSelectedPost(foundPost || null);
+		} else if (posts.length > 0) {
+			setSelectedPost(posts[0]);
+		}
+	}, [postId, posts]);
 
 	const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
@@ -30,18 +37,14 @@ const PageBlog = ({ posts = [] }) => {
 				} rounded-l-lg`}
 			>
 				<nav className="p-4 mt-16 flex-grow">
-					<h2 className="text-lg font-bold text-gray-800">
-						Blog Posts
-					</h2>
+					<h2 className="text-lg font-bold text-gray-800">Blog Posts</h2>
 					{posts.length > 0 ? (
 						<ul className="space-y-1 mt-4">
 							{posts.map((post) => (
 								<li key={post.id}>
-									<button
-										onClick={() => {
-											setSelectedPost(post);
-											setIsSidebarOpen(false);
-										}}
+									<Link
+										to={`/blog/${post.id}`} // Ensure the path is '/blog/'
+										onClick={() => setIsSidebarOpen(false)}
 										className={`block w-full text-left py-2 px-4 rounded ${
 											selectedPost?.id === post.id
 												? "bg-gray-700 text-white"
@@ -49,7 +52,7 @@ const PageBlog = ({ posts = [] }) => {
 										}`}
 									>
 										{post.title}
-									</button>
+									</Link>
 								</li>
 							))}
 						</ul>
@@ -77,9 +80,7 @@ const PageBlog = ({ posts = [] }) => {
 						<h3 className="text-2xl text-gray-700 mb-4">
 							{selectedPost.subtitle}
 						</h3>
-						<p className="leading-relaxed mb-8">
-							{selectedPost.content}
-						</p>
+						<p className="leading-relaxed mb-8">{selectedPost.content}</p>
 
 						{/* Additional Sections for a Learning Path Style */}
 						<h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
