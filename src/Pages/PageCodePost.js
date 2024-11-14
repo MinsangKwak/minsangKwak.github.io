@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 
-const CodePost = ({ posts, isBlogView }) => {
+const PageCodePost = ({ posts, isBlogView }) => {
 	const { postId } = useParams();
 	const post = posts.find((p) => p.id === parseInt(postId));
 
@@ -41,4 +41,4 @@ const CodePost = ({ posts, isBlogView }) => {
 	);
 };
 
-export default CodePost;
+export default PageCodePost;

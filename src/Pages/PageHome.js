@@ -4,7 +4,7 @@ import codePostsData from "../data/codePosts.json";
 import { Link } from "react-router-dom";
 import { PlusIcon } from "@heroicons/react/24/solid";
 
-const Home = () => {
+const PageHome = () => {
 	const [visibleBlogPosts, setVisibleBlogPosts] = useState(3);
 	const [visibleReferencePosts, setVisibleReferencePosts] = useState(3);
 
@@ -15,7 +15,9 @@ const Home = () => {
 
 	// 공통 스타일 변수
 	const buttonStyles =
-		"flex items-center text-xs text-white bg-white/20 backdrop-blur-md px-2 py-1 rounded border border-white/20 hover:bg-white/30 shadow-md";
+		"flex items-center text-xs text-outline bg-white/20 backdrop-blur-md px-2 py-1 rounded border border-white/20 hover:bg-white/30 shadow-md";
+		// const buttonStylesBlack =
+		// 	"flex items-center text-xs text-black bg-white/20 backdrop-blur-md px-2 py-1 rounded border border-white/20 hover:bg-white/30 shadow-md";
 	const listItemStyles =
 		"bg-white/20 backdrop-blur-md p-4 rounded-lg shadow-lg border border-white/30 relative";
 
@@ -116,4 +118,4 @@ const Home = () => {
 	);
 };
 
-export default Home;
+export default PageHome;

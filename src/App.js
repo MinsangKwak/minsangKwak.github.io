@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
-import CodePost from "./Pages/PageCodePost";
-import Home from "./Pages/PageHome";
-import Blog from "./Pages/PageBlog";
-import Wave from "./Components/Wave";
+
+// fake data
 import codePostsData from "./data/codePosts.json";
 import blogPostsData from "./data/blogPosts.json";
+
+// component
+import PageCodePost from "./Pages/PageCodePost";
+import PageHome from "./Pages/PageHome";
+import PageBlog from "./Pages/PageBlog";
 import Header from "./Components/Header";
+import Wave from "./Components/Wave";
 
 const App = () => {
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -144,15 +148,15 @@ const App = () => {
 
 				<div className="relative z-[2] flex-1 mt-16 p-6 max-w-full md:px-24 bg-white/20 border border-white/10 shadow-md rounded-lg text-gray-200">
 					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/blog" element={<Blog posts={blogPostsData} />} />
+						<Route path="/" element={<PageHome />} />
+						<Route path="/blog" element={<PageBlog posts={blogPostsData} />} />
 						<Route
 							path="/blog/:postId"
-							element={<CodePost posts={blogPostsData} isBlogView={true} />}
+							element={<PageCodePost posts={blogPostsData} isBlogView={true} />}
 						/>
 						<Route
 							path="/reference/:postId"
-							element={<CodePost posts={codePostsData} isBlogView={false} />}
+							element={<PageCodePost posts={codePostsData} isBlogView={false} />}
 						/>
 					</Routes>
 				</div>

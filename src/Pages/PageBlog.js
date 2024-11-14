@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Blog = ({ posts = [] }) => {
+const PageBlog = ({ posts = [] }) => {
 	const [selectedPost, setSelectedPost] = useState(null);
 	const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -108,4 +108,4 @@ const Blog = ({ posts = [] }) => {
 	);
 };
 
-export default Blog;
+export default PageBlog;
