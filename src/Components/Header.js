@@ -5,7 +5,7 @@ import {
 	HomeIcon,
 	EnvelopeIcon,
 	ArrowLeftIcon,
-	UserIcon,
+	PencilIcon ,
 } from "@heroicons/react/24/outline";
 import Category from "./Category";
 
@@ -45,7 +45,7 @@ const Header = ({
 			<header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-white/20 backdrop-blur-lg shadow-md h-16 px-4 border-b border-white/20">
 				<div className="flex items-center">
 					{location.pathname !== "/" ? (
-						<div className="flex items-center gap-4">
+						<div className="flex items-center gap-2">
 							{createButton(() => navigate(-1), ArrowLeftIcon, "Back")}
 							{createButton(handleHomeClick, HomeIcon, "Home")}
 						</div>
@@ -63,7 +63,7 @@ const Header = ({
 				</div>
 
 				<nav className="flex items-center">
-					{createButton(openLoginModal, UserIcon, "Login")}
+					{createButton(openLoginModal, PencilIcon , "Login")}
 					{createButton(openToast, EnvelopeIcon, "Email")}
 					{createButton(openSidebar, Bars3Icon, "Menu")}
 				</nav>
