@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { collection, getDocs, addDoc } from "firebase/firestore";
-import { db } from "./firebaseConfig";
+import { db, auth } from "./firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
 
 // Components
 import PageCodePost from "./Pages/PageCodePost";
 import PageHome from "./Pages/PageHome";
 import PageBlog from "./Pages/PageBlog";
+import PageJoin from "./Pages/PageJoin";
+import PageCreate from "./Pages/PageCreate";
 import Header from "./Components/Header";
 import Wave from "./Components/Wave";
 import Toast from "./Components/Toast";
@@ -20,6 +23,15 @@ const App = () => {
 	const [activeCategory, setActiveCategory] = useState(null);
 	const [blogPosts, setBlogPosts] = useState([]);
 	const [codePosts, setCodePosts] = useState([]);
+	const [user, setUser] = useState(null);
+
+	// 사용자 인증 상태 확인
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+			setUser(currentUser);
+		});
+		return () => unsubscribe();
+	}, []);
 
 	// Firestore에서 데이터 가져오기
 	useEffect(() => {
@@ -47,48 +59,6 @@ const App = () => {
 		fetchCodePosts();
 	}, []);
 
-	const uploadBlogPost = async (post) => {
-		try {
-			const docRef = await addDoc(collection(db, "blogPosts"), post);
-			console.log("Blog post written with ID: ", docRef.id);
-		} catch (e) {
-			console.error("Error adding blog post: ", e);
-		}
-	};
-
-	const uploadCodePost = async (post) => {
-		try {
-			const docRef = await addDoc(collection(db, "referencePosts"), post);
-			console.log("Code post written with ID: ", docRef.id);
-		} catch (e) {
-			console.error("Error adding code post: ", e);
-		}
-	};
-
-	const handleAddBlogPost = () => {
-		const newBlogPost = {
-			slug: "react-new-feature",
-			title: "React New Feature Overview",
-			subtitle: "A quick look at the new feature in React",
-			excerpt:
-				"React recently introduced a new feature. In this post, we'll explore what this means for developers.",
-			content: "Here is the detailed content of the new feature...",
-			created_at: new Date().toISOString(),
-		};
-		uploadBlogPost(newBlogPost);
-	};
-
-	const handleAddCodePost = () => {
-		const newCodePost = {
-			slug: "html-responsive-tips",
-			title: "HTML Responsive Tips",
-			memo: "Tips for making HTML content more responsive.",
-			content: "<p>Here is some content...</p>",
-			created_at: new Date().toISOString(),
-		};
-		uploadCodePost(newCodePost);
-	};
-
 	const toggleSidebar = () => {
 		setIsSidebarOpen((prev) => !prev);
 	};
@@ -113,7 +83,14 @@ const App = () => {
 	};
 
 	const toggleCategory = (category) => {
+		// 현재 활성화된 카테고리가 클릭된 카테고리와 같다면 닫고, 다르다면 해당 카테고리로 변경
 		setActiveCategory((prev) => (prev === category ? null : category));
+		console.log(
+			"Toggling category:",
+			category,
+			"Active Category:",
+			activeCategory
+		);
 	};
 
 	const categorizePosts = (posts) =>
@@ -128,42 +105,6 @@ const App = () => {
 	const categorizedBlogPosts = categorizePosts(blogPosts);
 	const categorizedReferencePosts = categorizePosts(codePosts);
 
-	// Firestore에 모든 블로그 포스트 업로드
-	// const uploadAllBlogPosts = async () => {
-	// 	try {
-	// 		for (const post of blogPostsData) {
-	// 			await addDoc(collection(db, "blogPosts"), post);
-	// 			console.log(`Blog post '${post.title}' uploaded successfully`);
-	// 		}
-	// 	} catch (e) {
-	// 		console.error("Error uploading blog posts: ", e);
-	// 	}
-	// };
-
-	// Firestore에 모든 참고 포스트 업로드
-	// const uploadAllReferencePosts = async () => {
-	// 	try {
-	// 		for (const post of referencePostsData) {
-	// 			await addDoc(collection(db, "referencePosts"), post);
-	// 			console.log(
-	// 				`Reference post '${post.title}' uploaded successfully`
-	// 			);
-	// 		}
-	// 	} catch (e) {
-	// 		console.error("Error uploading reference posts: ", e);
-	// 	}
-	// };
-
-	// 두 함수를 실행하여 모든 데이터를 Firestore에 업로드
-	// const uploadAllPosts = async () => {
-	// 	await uploadAllBlogPosts();
-	// 	await uploadAllReferencePosts();
-	// };
-
-	// useEffect(() => {
-	// 	uploadAllPosts();
-	// }, []);
-
 	return (
 		<Router>
 			<div className="flex flex-col min-h-screen bg-gradient-rainbow">
@@ -177,6 +118,7 @@ const App = () => {
 					categorizedReferencePosts={categorizedReferencePosts}
 					activeCategory={activeCategory}
 					toggleCategory={toggleCategory}
+					user={user} // 로그인한 사용자 정보 전달
 				/>
 
 				{/* Main Content */}
@@ -195,23 +137,9 @@ const App = () => {
 							path="/reference/:postId"
 							element={<PageCodePost posts={codePosts} />}
 						/>
+						<Route path="/join" element={<PageJoin />} />
+						<Route path="/create" element={<PageCreate />} />
 					</Routes>
-				</div>
-
-				{/* Buttons */}
-				<div className="fixed z-50 bottom-0 flex justify-center mt-8 space-x-4">
-					<button
-						onClick={handleAddBlogPost}
-						className="bg-blue-500 text-white font-semibold px-4 py-2 rounded shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-					>
-						Add Blog Post
-					</button>
-					<button
-						onClick={handleAddCodePost}
-						className="bg-green-500 text-white font-semibold px-4 py-2 rounded shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75"
-					>
-						Add Code Post
-					</button>
 				</div>
 
 				{/* Toast Notification */}

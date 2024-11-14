@@ -1,10 +1,29 @@
 // Components/LoginModal.js
-import React from "react";
+import React, { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import ConvexGeometryComponent from "./ConvexGeometry";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 const LoginModal = ({ isVisible, onClose, isFadingOut }) => {
+	const [email, setEmail] = useState("");
+	const [password, setPassword] = useState("");
+	const [error, setError] = useState(null);
+
 	if (!isVisible) return null;
+
+	const handleLogin = async (e) => {
+		e.preventDefault();
+		try {
+			await signInWithEmailAndPassword(auth, email, password);
+			onClose();
+			alert("로그인에 성공했습니다!");
+		} catch (err) {
+			setError(
+				"로그인에 실패했습니다. 이메일과 비밀번호를 확인해주세요."
+			);
+		}
+	};
 
 	return (
 		<div
@@ -28,15 +47,20 @@ const LoginModal = ({ isVisible, onClose, isFadingOut }) => {
 				<div className="flex items-center justify-center mb-4">
 					<ConvexGeometryComponent />
 				</div>
-				<form>
+				{error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+				<form onSubmit={handleLogin}>
 					<input
-						type="text"
-						placeholder="이름을 입력 해주세요"
+						type="email"
+						placeholder="이메일을 입력 해주세요"
+						value={email}
+						onChange={(e) => setEmail(e.target.value)}
 						className="text-sm w-full p-2 mb-4 rounded bg-white/30 placeholder-gray-500 focus:outline-none border border-gray-300"
 					/>
 					<input
 						type="password"
 						placeholder="비밀번호를 입력 해주세요"
+						value={password}
+						onChange={(e) => setPassword(e.target.value)}
 						className="text-sm w-full p-2 mb-4 rounded bg-white/30 placeholder-gray-500 focus:outline-none border border-gray-300"
 					/>
 					<button

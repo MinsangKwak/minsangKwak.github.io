@@ -25,7 +25,7 @@ const Category = ({
 		</div>
 		{isActive && (
 			<>
-				<div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-10" />{" "}
+				{/* <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-10" />{" "} */}
 				{/* 배경 오버레이 */}
 				<ul className="relative mt-1 bg-white/20 backdrop-blur-sm p-2 rounded-lg border border-white/30 shadow-md z-20">
 					{posts.map((post) => (
