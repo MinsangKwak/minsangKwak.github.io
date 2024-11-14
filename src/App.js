@@ -23,6 +23,10 @@ const App = () => {
 		setIsSidebarOpen((prev) => !prev);
 	};
 
+	const closeSidebar = () => {
+		setIsSidebarOpen(false);
+	};
+
 	const openToast = () => {
 		setIsToastVisible(true);
 		setTimeout(() => setIsToastVisible(false), 5000);
@@ -58,6 +62,7 @@ const App = () => {
 				<Header
 					openSidebar={toggleSidebar}
 					isSidebarOpen={isSidebarOpen}
+					closeSidebar={closeSidebar} // closeSidebar를 Header에 전달
 					openToast={openToast}
 					openLoginModal={openLoginModal}
 					categorizedBlogPosts={categorizedBlogPosts}

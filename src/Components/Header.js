@@ -12,6 +12,7 @@ import Category from "./Category";
 const Header = ({
 	openSidebar,
 	isSidebarOpen,
+	closeSidebar, // closeSidebar를 받아옴
 	openToast,
 	openLoginModal,
 	categorizedBlogPosts,
@@ -28,7 +29,7 @@ const Header = ({
 	}, [isSidebarOpen]);
 
 	const handleHomeClick = () => {
-		openSidebar();
+		closeSidebar(); // 사이드바를 닫음
 		navigate("/");
 	};
 
@@ -45,7 +46,7 @@ const Header = ({
 			<header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between bg-white/20 backdrop-blur-lg shadow-md h-16 px-4 border-b border-white/20">
 				<div className="flex items-center">
 					{location.pathname !== "/" ? (
-						<div className="flex items-center gap-2">
+						<div className="flex items-center">
 							{createButton(() => navigate(-1), ArrowLeftIcon, "Back")}
 							{createButton(handleHomeClick, HomeIcon, "Home")}
 						</div>
@@ -53,7 +54,7 @@ const Header = ({
 						<h1>
 							<Link
 								to="/"
-								onClick={() => openSidebar(false)}
+								onClick={() => closeSidebar()} // 홈 버튼 클릭 시 사이드바 닫기
 								className="text-gray-900 font-bold text-outline"
 							>
 								CODE DIARY
@@ -82,10 +83,10 @@ const Header = ({
 							key={category}
 							category={category}
 							posts={categorizedBlogPosts[category]}
-							basePath="blog" // 블로그 경로 지정
+							basePath="blog"
 							isActive={activeCategory === category}
 							onClick={toggleCategory}
-							onPostClick={() => openSidebar(false)}
+							onPostClick={() => closeSidebar()}
 						/>
 					))}
 
@@ -95,10 +96,10 @@ const Header = ({
 							key={category}
 							category={category}
 							posts={categorizedReferencePosts[category]}
-							basePath="reference" // 레퍼런스 경로 지정
+							basePath="reference"
 							isActive={activeCategory === category}
 							onClick={toggleCategory}
-							onPostClick={() => openSidebar(false)}
+							onPostClick={() => closeSidebar()}
 						/>
 					))}
 				</nav>
