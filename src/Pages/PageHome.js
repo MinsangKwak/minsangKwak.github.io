@@ -1,12 +1,40 @@
-import React, { useState } from "react";
-import blogPostsData from "../data/blogPosts.json";
-import codePostsData from "../data/codePosts.json";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { PlusIcon } from "@heroicons/react/24/solid";
+import { db } from "../firebaseConfig";
+import { collection, getDocs } from "firebase/firestore";
 
 const PageHome = () => {
 	const [visibleBlogPosts, setVisibleBlogPosts] = useState(3);
 	const [visibleReferencePosts, setVisibleReferencePosts] = useState(3);
+	const [blogPostsData, setBlogPostsData] = useState([]);
+	const [codePostsData, setCodePostsData] = useState([]);
+
+	// Firestore에서 데이터를 가져오는 useEffect
+	useEffect(() => {
+		const fetchBlogPosts = async () => {
+			const blogCollection = collection(db, "blogPosts");
+			const blogSnapshot = await getDocs(blogCollection);
+			const blogList = blogSnapshot.docs.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
+			}));
+			setBlogPostsData(blogList);
+		};
+
+		const fetchCodePosts = async () => {
+			const codeCollection = collection(db, "referencePosts");
+			const codeSnapshot = await getDocs(codeCollection);
+			const codeList = codeSnapshot.docs.map((doc) => ({
+				id: doc.id,
+				...doc.data(),
+			}));
+			setCodePostsData(codeList);
+		};
+
+		fetchBlogPosts();
+		fetchCodePosts();
+	}, []);
 
 	const loadMorePosts = (setVisible) => setVisible((prev) => prev + 3);
 
@@ -16,8 +44,6 @@ const PageHome = () => {
 	// 공통 스타일 변수
 	const buttonStyles =
 		"flex items-center text-xs text-outline bg-white/20 backdrop-blur-md px-2 py-1 rounded border border-white/20 hover:bg-white/30 shadow-md";
-		// const buttonStylesBlack =
-		// 	"flex items-center text-xs text-black bg-white/20 backdrop-blur-md px-2 py-1 rounded border border-white/20 hover:bg-white/30 shadow-md";
 	const listItemStyles =
 		"bg-white/20 backdrop-blur-md p-4 rounded-lg shadow-lg border border-white/30 relative";
 
