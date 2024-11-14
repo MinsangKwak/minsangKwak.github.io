@@ -7,7 +7,7 @@ const PageCodePost = ({ posts, isBlogView }) => {
 
 	if (!post) {
 		return (
-			<div className="text-gray-200">해당 게시물을 찾을 수 없습니다.</div>
+			<div className="text-outline">해당 게시물을 찾을 수 없습니다.</div>
 		);
 	}
 
