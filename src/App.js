@@ -10,6 +10,7 @@ import blogPostsData from "./data/blogPosts.json";
 import PageCodePost from "./Pages/PageCodePost";
 import PageHome from "./Pages/PageHome";
 import PageBlog from "./Pages/PageBlog";
+import Category from "./Components/Category";
 import Header from "./Components/Header";
 import Wave from "./Components/Wave";
 
@@ -19,29 +20,19 @@ const App = () => {
 	const [isBlogView, setIsBlogView] = useState(false);
 	const [activeCategory, setActiveCategory] = useState(null);
 
-	const openSidebar = (isBlog) => {
+	const toggleSidebar = (isBlog) => {
 		setIsBlogView(isBlog);
-		if (isSidebarOpen) {
-			setIsExiting(true);
-			setTimeout(() => {
-				setIsSidebarOpen(false);
-				setIsExiting(false);
-			}, 300);
-		} else {
-			setIsSidebarOpen(true);
-		}
+		setIsExiting(isSidebarOpen);
+		setIsSidebarOpen((prev) => !prev);
+		setTimeout(() => setIsExiting(false), 300);
 	};
 
-	const categorizePosts = (posts) => {
-		return posts.reduce((categories, post) => {
+	const categorizePosts = (posts) =>
+		posts.reduce((categories, post) => {
 			const category = post.slug.split("-")[0];
-			if (!categories[category]) {
-				categories[category] = [];
-			}
-			categories[category].push(post);
+			(categories[category] = categories[category] || []).push(post);
 			return categories;
 		}, {});
-	};
 
 	const categorizedBlogPosts = categorizePosts(blogPostsData);
 	const categorizedReferencePosts = categorizePosts(codePostsData);
@@ -53,96 +44,46 @@ const App = () => {
 	return (
 		<Router>
 			<div className="flex flex-col min-h-screen bg-gradient-rainbow">
-				<Header openSidebar={openSidebar} isSidebarOpen={isSidebarOpen} />
+				<Header openSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
 
-				{/* 사이드바 */}
+				{/* Sidebar */}
 				<aside
-					className={`fixed top-0 right-0 h-full bg-white/20 backdrop-blur-md text-black ${
-						isSidebarOpen && !isExiting ? "translate-x-0" : "translate-x-full"
-					} transform transition-transform duration-300 z-20 shadow-lg border border-white/10 rounded-l-lg ${
-						isSidebarOpen ? "w-[80%] md:w-[240px]" : "w-0"
-					} flex flex-col justify-between`}
+					className={`fixed top-0 right-0 h-full bg-white/20 backdrop-blur-md text-black transition-transform duration-300 z-20 shadow-lg border border-white/10 rounded-l-lg ${
+						isSidebarOpen ? "translate-x-0 w-[80%] md:w-[240px]" : "translate-x-full"
+					}`}
 				>
-					<nav className="p-4 space-y-4 mt-16 flex-grow overflow-y-auto">
-						{/* 블로그 포스트 */}
-						<h2 className="text-lg font-bold text-black">Blog</h2>
+					<nav className="p-4 mt-16 overflow-y-auto">
+						<h2 className="text-lg font-bold">Blog</h2>
 						{Object.keys(categorizedBlogPosts).map((category) => (
-							<div key={category} className="mb-2">
-								<div
-									className="flex items-center justify-between text-md font-semibold text-black mt-2 cursor-pointer bg-white/20 backdrop-blur-sm px-3 py-2 rounded-lg"
-									onClick={() => toggleCategory(category)}
-								>
-									<span>{category}</span>
-									<ChevronDownIcon
-										className={`w-5 h-5 transition-transform duration-200 ${
-											activeCategory === category ? "transform rotate-180" : ""
-										}`}
-									/>
-								</div>
-								{activeCategory === category && (
-									<ul className="flex flex-col gap-1 mt-1 bg-white/20 backdrop-blur-sm p-2 rounded-lg">
-										{categorizedBlogPosts[category].map((post) => (
-											<li key={post.id}>
-												<Link
-													to={`/blog/${post.id}`}
-													onClick={() => {
-														setIsSidebarOpen(false);
-														setIsBlogView(true);
-													}}
-													className="block w-full text-left py-2 px-4 rounded hover:bg-white/30 text-black"
-												>
-													{post.title}
-												</Link>
-											</li>
-										))}
-									</ul>
-								)}
-							</div>
+							<Category
+								key={category}
+								category={category}
+								posts={categorizedBlogPosts[category]}
+								isActive={activeCategory === category}
+								onClick={toggleCategory}
+								onPostClick={() => setIsSidebarOpen(false)}
+							/>
 						))}
 
-						{/* 참조 포스트 */}
-						<h2 className="text-lg font-bold mt-6 text-black">References</h2>
+						<h2 className="text-lg font-bold mt-6">References</h2>
 						{Object.keys(categorizedReferencePosts).map((category) => (
-							<div key={category} className="mb-2">
-								<div
-									className="flex items-center justify-between text-md font-semibold text-black mt-2 cursor-pointer bg-white/20 backdrop-blur-sm px-3 py-2 rounded-lg"
-									onClick={() => toggleCategory(category)}
-								>
-									<span>{category}</span>
-									<ChevronDownIcon
-										className={`w-5 h-5 transition-transform duration-200 ${
-											activeCategory === category ? "transform rotate-180" : ""
-										}`}
-									/>
-								</div>
-								{activeCategory === category && (
-									<ul className="flex flex-col gap-1 mt-1 bg-white/20 backdrop-blur-sm p-2 rounded-lg">
-										{categorizedReferencePosts[category].map((post) => (
-											<li key={post.id}>
-												<Link
-													to={`/reference/${post.id}`}
-													onClick={() => {
-														setIsSidebarOpen(false);
-														setIsBlogView(false);
-													}}
-													className="block w-full text-left py-2 px-4 rounded hover:bg-white/30 text-black"
-												>
-													{post.title}
-												</Link>
-											</li>
-										))}
-									</ul>
-								)}
-							</div>
+							<Category
+								key={category}
+								category={category}
+								posts={categorizedReferencePosts[category]}
+								isActive={activeCategory === category}
+								onClick={toggleCategory}
+								onPostClick={() => setIsSidebarOpen(false)}
+							/>
 						))}
 					</nav>
 				</aside>
 
-				{/* 배경 클릭 시 사이드바 닫기 */}
+				{/* Sidebar Overlay */}
 				{isSidebarOpen && (
 					<div
 						className="fixed inset-0 backdrop-blur-sm z-10"
-						onClick={() => openSidebar(false)}
+						onClick={() => toggleSidebar(false)}
 					></div>
 				)}
 
