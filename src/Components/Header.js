@@ -5,14 +5,14 @@ import {
 	HomeIcon,
 	EnvelopeIcon,
 	ArrowLeftIcon,
-	PencilIcon ,
+	PencilIcon,
 } from "@heroicons/react/24/outline";
 import Category from "./Category";
 
 const Header = ({
 	openSidebar,
 	isSidebarOpen,
-	closeSidebar, // closeSidebar를 받아옴
+	closeSidebar,
 	openToast,
 	openLoginModal,
 	categorizedBlogPosts,
@@ -25,18 +25,25 @@ const Header = ({
 
 	useEffect(() => {
 		document.body.style.overflow = isSidebarOpen ? "hidden" : "auto";
-		document.documentElement.style.overflow = isSidebarOpen ? "hidden" : "auto";
+		document.documentElement.style.overflow = isSidebarOpen
+			? "hidden"
+			: "auto";
 	}, [isSidebarOpen]);
 
 	const handleHomeClick = () => {
-		closeSidebar(); // 사이드바를 닫음
+		closeSidebar();
 		navigate("/");
 	};
 
-	const buttonStyles = "text-gray-700 p-2 rounded focus:outline-none text-outline";
+	const buttonStyles =
+		"text-gray-700 p-2 rounded focus:outline-none text-outline";
 
 	const createButton = (onClick, IconComponent, ariaLabel) => (
-		<button onClick={onClick} className={buttonStyles} aria-label={ariaLabel}>
+		<button
+			onClick={onClick}
+			className={buttonStyles}
+			aria-label={ariaLabel}
+		>
 			<IconComponent className="w-6 h-6" />
 		</button>
 	);
@@ -47,14 +54,18 @@ const Header = ({
 				<div className="flex items-center">
 					{location.pathname !== "/" ? (
 						<div className="flex items-center">
-							{createButton(() => navigate(-1), ArrowLeftIcon, "Back")}
+							{createButton(
+								() => navigate(-1),
+								ArrowLeftIcon,
+								"Back"
+							)}
 							{createButton(handleHomeClick, HomeIcon, "Home")}
 						</div>
 					) : (
 						<h1>
 							<Link
 								to="/"
-								onClick={() => closeSidebar()} // 홈 버튼 클릭 시 사이드바 닫기
+								onClick={() => closeSidebar()}
 								className="text-gray-900 font-bold text-outline"
 							>
 								CODE DIARY
@@ -64,16 +75,22 @@ const Header = ({
 				</div>
 
 				<nav className="flex items-center">
-					{createButton(openLoginModal, PencilIcon , "Login")}
+					{createButton(openLoginModal, PencilIcon, "Login")}
 					{createButton(openToast, EnvelopeIcon, "Email")}
 					{createButton(openSidebar, Bars3Icon, "Menu")}
 				</nav>
 			</header>
 
+			{isSidebarOpen && (
+				<div className="fixed inset-0 bg-white/20 backdrop-blur-sm z-30" />
+			)}
+
 			{/* Sidebar */}
 			<aside
-				className={`fixed top-0 right-0 h-full bg-white/20 backdrop-blur-md text-black transition-transform duration-300 z-20 shadow-lg border border-white/10 rounded-l-lg ${
-					isSidebarOpen ? "translate-x-0 w-[80%] md:w-[240px]" : "translate-x-full"
+				className={`fixed top-0 right-0 h-full bg-white/20 backdrop-blur-md text-black transition-transform duration-300 z-40 shadow-lg border border-white/10 rounded-l-lg ${
+					isSidebarOpen
+						? "translate-x-0 w-[80%] md:w-[240px]"
+						: "translate-x-full"
 				}`}
 			>
 				<nav className="p-4 mt-16 overflow-y-auto">
