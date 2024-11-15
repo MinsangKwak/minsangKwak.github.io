@@ -5,10 +5,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CODE DIARY</title>
+    
 </head>
 
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <script>
+            if (!window.location.pathname.endsWith('/')) {
+              window.location.href = window.location.pathname + '/' + window.location.search + window.location.hash;
+            }
+        </script>
+    </div>
 </body>
 
 </html>
