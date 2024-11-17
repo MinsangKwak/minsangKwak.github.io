@@ -28,31 +28,43 @@
 
 ```plaintext
 .
-├── .github                   # GitHub 설정 파일
-├── build                     # 프로덕션 빌드 파일
-├── node_modules              # Node.js 의존성
-├── public                    # index.html 등 퍼블릭 파일
-├── src                       # 소스 파일
-│   ├── data
-│   │   ├── blogPosts.json    # Blog 탭 포스트 데이터 파일 (현재 Firestore로 대체됨)
-│   │   └── codePosts.json    # References 탭 포스트 데이터 파일 (현재 Firestore로 대체됨)
-│   ├── Components
-│   │   ├── PostDetail.js     # 포스트 상세 페이지 컴포넌트
-│   │   ├── Category.js       # Category 컴포넌트
-│   │   ├── Wave.js           # 배경용 컴포넌트
-│   │   ├── Toast.js          # 토스트 컴포넌트
-│   │   ├── LoginModal.js     # 로그인 모달 컴포넌트
-│   │   ├── ConvexGeometry.js # Three.js 3D 그래픽 관련 파일
-│   │   └── Header.js         # 헤더 컴포넌트 (네비게이션 메뉴 포함)
-│   ├── Pages
-│   │   ├── PageBlog.js       # Blog 탭에서 포스트 목록과 상세 페이지를 표시하는 컴포넌트
-│   │   ├── PageCodePost.js   # 포스트 상세 페이지 컴포넌트 (포스트 내용 및 코드 미리보기)
-│   │   └── PageHome.js       # 홈 화면 컴포넌트
-│   ├── App.js                # 메인 컴포넌트 (전체 레이아웃 및 라우팅)
-│   ├── firebaseConfig.js     # Firebase 설정 파일
-│   ├── index.js              # 진입 파일
-│   ├── style.css             # Tailwind CSS 설정 파일
-└── README.md                 # 프로젝트 설명서
+├── .github
+│   └── workflows
+│       └── static.yml           # GitHub Actions 워크플로우
+├── build                        # 프로덕션 빌드 파일
+├── node_modules                 # 의존성 모듈
+├── public                       # 정적 파일
+│   ├── 404.html                 # 404 페이지
+│   └── index.html               # HTML 엔트리 파일
+├── src                          # 소스 코드
+│   ├── Components               # 공통 컴포넌트
+│   │   ├── Category.js          # 카테고리 목록 관리 컴포넌트
+│   │   ├── ConvexGeometry.js    # Three.js를 활용한 3D 그래픽 컴포넌트
+│   │   ├── Header.js            # 상단 네비게이션 헤더
+│   │   ├── Loader.js            # 로딩 화면 표시 컴포넌트
+│   │   ├── LoginModal.js        # 로그인 모달 컴포넌트
+│   │   ├── PostDetail.js        # 포스트 상세 정보 표시
+│   │   ├── Skeleton.js          # 데이터 로딩 중 스켈레톤 UI
+│   │   ├── Toast.js             # 토스트 메시지 컴포넌트
+│   │   └── Wave.js              # 배경 애니메이션
+│   ├── Pages                    # 페이지 컴포넌트
+│   │   ├── PageBlog.js          # 블로그 포스트 목록 페이지
+│   │   ├── PageCodePost.js      # 코드 참조 상세 페이지
+│   │   ├── PageCreate.js        # 새 포스트 작성 페이지
+│   │   ├── PageHome.js          # 메인 홈 화면
+│   │   └── PageJoin.js          # 회원 가입 페이지
+│   ├── data                     # JSON 데이터
+│   │   ├── blogPosts.json       # 블로그 포스트 초기 데이터
+│   │   └── codePosts.json       # 코드 참조 초기 데이터
+│   ├── App.js                   # 애플리케이션 메인 컴포넌트
+│   ├── firebaseConfig.js        # Firebase 설정 파일
+│   ├── index.js                 # 애플리케이션 엔트리 파일
+│   ├── style.css                # Tailwind CSS 커스터마이징 파일
+│   └── uploadDataToFirestore.js # Firestore 데이터 업로드 스크립트
+├── .gitignore                   # Git 관리에서 제외할 파일 목록
+├── package.json                 # 프로젝트 메타 정보 및 의존성
+└── README.md                    # 프로젝트 설명 문서
+
 ```
 
 ### 주요 파일 설명
