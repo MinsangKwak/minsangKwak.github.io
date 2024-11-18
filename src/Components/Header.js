@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
 	Bars3Icon,
@@ -14,20 +14,18 @@ import { auth } from "../firebaseConfig";
 import Category from "./Category";
 
 const Header = ({
-	openSidebar,
-	isSidebarOpen,
-	closeSidebar,
-	openToast,
+	openToast, // Toast 열기 함수
 	openLoginModal,
 	categorizedBlogPosts,
 	categorizedReferencePosts,
-	activeCategory,
-	toggleCategory,
 	user, // 로그인한 사용자 정보
 }) => {
+	const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 열림/닫힘 상태
+	const [activeCategory, setActiveCategory] = useState(null); // 활성화된 카테고리
 	const navigate = useNavigate();
 	const location = useLocation();
 
+	// 사이드바 열림/닫힘 상태에 따라 스크롤 방지
 	useEffect(() => {
 		document.body.style.overflow = isSidebarOpen ? "hidden" : "auto";
 		document.documentElement.style.overflow = isSidebarOpen
@@ -35,11 +33,23 @@ const Header = ({
 			: "auto";
 	}, [isSidebarOpen]);
 
+	// 사이드바 토글 핸들러
+	const toggleSidebar = () => {
+		setIsSidebarOpen((prev) => !prev);
+	};
+
+	// 카테고리 토글 핸들러
+	const toggleCategory = (category) => {
+		setActiveCategory((prev) => (prev === category ? null : category));
+	};
+
+	// 홈 버튼 동작
 	const handleHomeClick = () => {
-		closeSidebar();
+		setIsSidebarOpen(false);
 		navigate("/");
 	};
 
+	// 로그아웃 동작
 	const handleLogout = async () => {
 		try {
 			await signOut(auth);
@@ -49,9 +59,11 @@ const Header = ({
 		}
 	};
 
+	// 공통 버튼 스타일
 	const buttonStyles =
 		"text-gray-700 p-2 rounded focus:outline-none text-outline";
 
+	// 버튼 생성 함수
 	const createButton = (onClick, IconComponent, ariaLabel) => (
 		<button
 			onClick={onClick}
@@ -80,7 +92,7 @@ const Header = ({
 						<h1>
 							<Link
 								to="/"
-								onClick={() => closeSidebar()}
+								onClick={() => setIsSidebarOpen(false)}
 								className="text-gray-900 font-bold text-outline"
 							>
 								CODE DIARY
@@ -102,20 +114,18 @@ const Header = ({
 					)}
 					{/* 로그인 아이콘 */}
 					{!user
-						? createButton(openLoginModal, UserIcon, "Login")
+						? createButton(openLoginModal, UserIcon, "Login") // 로그인 모달 열기
 						: createButton(
 								handleLogout,
 								ArrowRightOnRectangleIcon,
 								"Logout"
 						  )}
-					{createButton(openToast, EnvelopeIcon, "Email")}
-					{createButton(openSidebar, Bars3Icon, "Menu")}
+					{/* 메일 버튼 */}
+					{createButton(() => openToast(), EnvelopeIcon, "Email")}
+					{/* 햄버거 메뉴 버튼 */}
+					{createButton(toggleSidebar, Bars3Icon, "Menu")}
 				</nav>
 			</header>
-
-			{/* {isSidebarOpen && (
-				<div className="fixed inset-0 bg-white/20 backdrop-blur-sm z-30" />
-			)} */}
 
 			{/* Sidebar */}
 			<aside
@@ -134,8 +144,8 @@ const Header = ({
 							posts={categorizedBlogPosts[category]}
 							basePath="blog"
 							isActive={activeCategory === category}
-							onClick={toggleCategory}
-							onPostClick={() => closeSidebar()}
+							onClick={toggleCategory} // toggleCategory 함수 전달
+							onPostClick={() => setIsSidebarOpen(false)} // 사이드바 닫기
 						/>
 					))}
 
@@ -147,8 +157,8 @@ const Header = ({
 							posts={categorizedReferencePosts[category]}
 							basePath="reference"
 							isActive={activeCategory === category}
-							onClick={toggleCategory}
-							onPostClick={() => closeSidebar()}
+							onClick={toggleCategory} // toggleCategory 함수 전달
+							onPostClick={() => setIsSidebarOpen(false)} // 사이드바 닫기
 						/>
 					))}
 				</nav>
