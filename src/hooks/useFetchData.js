@@ -3,36 +3,45 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "firebaseConfig";
 
 export const useFetchData = () => {
-    const [isLoading, setIsLoading] = useState(true);
-    const [blogPosts, setBlogPosts] = useState([]);
-    const [codePosts, setCodePosts] = useState([]);
+	const [state, setState] = useState({
+		isLoading: true,
+		blogPosts: [],
+		codePosts: [],
+		error: null,
+	});
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const blogCollection = collection(db, "blogPosts");
-                const codeCollection = collection(db, "referencePosts");
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const [blogSnapshot, codeSnapshot] = await Promise.all([
+					getDocs(collection(db, "blogPosts")),
+					getDocs(collection(db, "referencePosts")),
+				]);
 
-                const [blogSnapshot, codeSnapshot] = await Promise.all([
-                    getDocs(blogCollection),
-                    getDocs(codeCollection),
-                ]);
+				setState({
+					isLoading: false,
+					blogPosts: blogSnapshot.docs.map((doc) => ({
+						id: doc.id,
+						...doc.data(),
+					})),
+					codePosts: codeSnapshot.docs.map((doc) => ({
+						id: doc.id,
+						...doc.data(),
+					})),
+					error: null,
+				});
+			} catch (error) {
+				setState({
+					isLoading: false,
+					blogPosts: [],
+					codePosts: [],
+					error: "데이터를 가져오는 중 문제가 발생했습니다.",
+				});
+			}
+		};
 
-                setBlogPosts(
-                    blogSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-                );
-                setCodePosts(
-                    codeSnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-                );
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            } finally {
-                setIsLoading(false);
-            }
-        };
+		fetchData();
+	}, []);
 
-        fetchData();
-    }, []);
-
-    return { isLoading, blogPosts, codePosts };
+	return state;
 };
